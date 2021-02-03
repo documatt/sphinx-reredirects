@@ -21,6 +21,8 @@ Source may be non-existing document or existing document. If source does not exi
 
 Target value must correspond to the output file naming of chosen builder. For example, html builder creates ``docname.html``, while dirhtml ``docname/index.html``.
 
+.. important:: The extension works only for HTML-based builders like html and dirhtml. When building to other outputs (linkcheck, latex), it does nothing.
+
 Redirect old documents
 **********************
 
