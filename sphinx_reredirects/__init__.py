@@ -24,13 +24,13 @@ def setup(app: Sphinx):
     """
     Extension setup, called by Sphinx
     """
-    app.connect("build-finished", init)
+    app.connect("html-collect-pages", init)
     app.add_config_value(OPTION_REDIRECTS, OPTION_REDIRECTS_DEFAULT, "env")
     app.add_config_value(OPTION_TEMPLATE_FILE, OPTION_TEMPLATE_FILE_DEFAULT,
                          "env")
 
 
-def init(app: Sphinx, exception):
+def init(app: Sphinx):
     if not app.config[OPTION_REDIRECTS]:
         logger.debug('No redirects configured')
         return
@@ -38,6 +38,10 @@ def init(app: Sphinx, exception):
     rr = Reredirects(app)
     to_be_redirected = rr.grab_redirects()
     rr.create_redirects(to_be_redirected)
+
+    # html-collect-pages requires to return iterable of pages to write,
+    # we have no additional pages to write
+    return []
 
 
 class Reredirects:
