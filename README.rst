@@ -23,7 +23,7 @@ Install
 Setup
 *****
 
-Add to your ``conf.py`` into ``extensions`` list extension name ``sphinx_reredirects``::
+Open your ``conf.py`` and append ``sphinx_reredirects`` to the ``extensions`` list::
 
     extensions = [
         ...
@@ -34,16 +34,16 @@ Add to your ``conf.py`` into ``extensions`` list extension name ``sphinx_reredir
 Usage
 *****
 
-The extension relies on the ``redirects`` configuration option in ``conf.py``. By default is empty (generates no redirect files). ``redirects`` option is mapping of docnames to new targets.
+The extension relies on the ``redirects`` configuration option in ``conf.py``. By default is empty (generates no redirect files). ``redirects`` option is a map of docnames to new targets.
 
-Source (the key in ``redirects`` map) is docname, i.e. document path *without an suffix* (an extension). Most Sphinx projects use ``.rst`` as extensions. For example, docname for file ``index.rst`` is ``index``, for ``agents/intro.rst`` is ``agents/intro``, etc.
+Source (the key in ``redirects`` map) is docname, i.e. document path *without a suffix* (an extension). Most Sphinx projects use ``.rst`` as extension. For example, a docname for the file ``index.rst`` is ``index``, for ``agents/intro.rst`` is ``agents/intro``, etc.
 
-While, target URI is free text that will be be used in HTML redirect file as-is. Only placeholder (see bellow) is applied on it. It means its value usually is path *with file suffix*.
+Target (the value in ``redirects`` map) is a URL that will be used in HTML redirecting file. It may be specified using the placeholder to reuse docname in the target (`see bellow <Placeholders_>`_).
 
 Relative URIs
 =============
 
-Basic usage is to redirect document to another document within the same project::
+Basic usage is to redirect a document to another document within the same project::
 
     redirects = {
         "agents/intro": "agents/getting-started.html",
@@ -76,9 +76,9 @@ Wildcards know only ``*``, ``?``, ``[seq]`` and ``[!seq]`` patterns. ``*`` match
 Placeholders
 ============
 
-Matched part in the source URI, is available in the target URI as ``$source`` or ``${source}``. Because source notation is without suffix, you may need to append ``.html`` or ``/`` suffix after the placeholder.
+Matched part in the source URI, is available in the target URI as ``$source`` or ``${source}`` placeholder. Because source notation (a docname) is without suffix, you may need to append ``.html`` or ``/`` suffix after the placeholder.
 
-For example, if you move all documents inside ``agents/`` folder to ``operators/``::
+For example, if you move all documents from ``agents/`` to ``operators/`` folder::
 
     redirects = {
         "agents/*": "operators/$source.html",
@@ -96,14 +96,13 @@ Occasionally, you have to move complete documentation to the new home. It's easy
         "*": ""https://anotherwebsite.com/docs/$source.html"
     }
 
-.. tip:: To help search engines understanding the transfer, update `html_baseurl <https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_baseurl>`_ option to the new website, too.
+.. tip:: To help search engines to understand the transfer, update (or set) `html_baseurl <https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_baseurl>`_ option to the new website, too.
 
 ***********************
 Caveats and limitations
 ***********************
 
 The |project| extension runs after the Sphinx build has finished. It works by creating files in build output directory (usually ``build/html``, ``_build/html``, etc.). If you instruct |project| to create redirect file at the path of existing HTML file produced by Sphinx, it will be overwritten without warning.
-
 
 ***
 FAQ
@@ -112,9 +111,9 @@ FAQ
 Isn't 301 redirects better?
 ===========================
 
-|project| extension was created for tech writers who can't manage redirects with server-side 301 redirects. Generally, SEO consultants recommend server-side redirects created with ``.htaccess`` and similar files. However, many documentation is hosted as static website on services like S3, GitLab Pages which doesn't support server-side redirects.
+|project| extension was created for tech writers who can't manage redirects with server-side 301 redirects. Generally, SEO consultants recommend server-side redirects created with ``.htaccess`` and similar files. However, many documentation is hosted as on static website hosting which doesn't support server-side redirects.
 
-However, client-side redirects with meta refresh are okay for search engines, even the most ancient browsers, and users too. Also, it is easier if you can manage redirects in documentation, instead of delegate every page URL change to the administrators.
+However, client-side redirects with meta refresh are okay for search engines, even the most ancient browsers, and users too. Also, it is easier if you can manage redirects in documentation, instead of telling about page URL change to the administrators.
 
 I know better how to write HTML redirect file
 =============================================
@@ -130,13 +129,13 @@ Actual target URI requested in configuration is available under ``${to_uri}`` pl
 Why name "reredirects"?
 =======================
 
-Because the name "redirects" is already taken by `another <https://github.com/sphinx-contrib/redirects>`_ extension. Unfortunately, it seems to be a bit old, unmaintained, and doesn't support wildcards. These were reasons why we decided to craft new extension.
+Because the name "redirects" is already taken by `another <https://github.com/sphinx-contrib/redirects>`_ extension. Unfortunately, it doesn't fulfil our requirements (the most notable it doesn't support wildcards). These were reasons why we decided to craft new extension.
 
 ***************
 About and legal
 ***************
 
-|project| started from the urge to manage redirects for all documents during moving our Techwriter at work blog to the new domain https://techwriter.documatt.com.
+|project| started from the urge to manage redirects for all documents during moving our *Tech writer at work blog* to the new domain https://techwriter.documatt.com.
 
 Feel free to raise issue with support question, found bug, or enhancement.
 
@@ -148,4 +147,4 @@ Legal
 
 Forward Arrow icon by `Icons8 <https://icons8.com/icon/74159/forward-arrow>`_.
 
-|project| is licenced under BSD3.
+|project| is licensed under BSD3.
