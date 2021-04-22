@@ -1,0 +1,16 @@
+pages:
+  only:
+    - master
+  image: python:3.6
+  variables:
+    PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+  cache:
+    paths:
+      - .cache/pip
+      - venv
+  script:
+    - python3 -m pip install -r requirements.txt
+    - sphinx-build -b html -q docs public
+  artifacts:
+    paths:
+      - public

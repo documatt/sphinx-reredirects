@@ -16,3 +16,4 @@ public/
 
 # Sphinx
 .doctrees
+_build
