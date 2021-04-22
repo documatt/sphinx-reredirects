@@ -10,8 +10,7 @@ pages:
       - venv
   script:
     - python3 -m pip install -r requirements.txt
-    - cd docs
-    - sphinx-build -b html -q source public
+    - sphinx-build -b html -q docs public
   artifacts:
     paths:
       - public
