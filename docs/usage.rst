@@ -1,71 +1,98 @@
 Usage
 #####
 
-The extension relies on the ``redirects`` configuration option in ``conf.py``. By default is empty (generates no redirect files). ``redirects`` option is a map of docnames to new targets.
+The extension relies on the ``redirects`` configuration option in ``conf.py``. ``redirects`` option maps a *source* to a *target*.
 
-Source (the key in ``redirects`` map) is docname, i.e. document path *without a suffix* (an extension). Most Sphinx projects use ``.rst`` as extension. For example, a docname for the file ``index.rst`` is ``index``, for ``agents/intro.rst`` is ``agents/intro``, etc.
+.. highlight:: python3
 
-Target (the value in ``redirects`` map) is a URL that will be used in HTML redirecting file. It may be specified using the placeholder to reuse docname in the target (`see bellow <Placeholders_>`_).
+::
 
-Relative URIs
-*************
+   redirects = {
+        "<source>": "<target>"
+   }
 
-Basic usage is to redirect a document to another document within the same project::
+By default, ``redirects`` is empty (i.e. generates no redirect files).
+
+*Source* (the key in ``redirects`` map) is a *docname*, i.e. document path without a suffix (an extension). Most Sphinx projects use ``.rst`` as extension. For example, a docname for the file ``index.rst`` is ``index``, for ``agents/intro.rst`` is ``agents/intro``, etc.
+
+Source may be non-existing document or existing document. If source does not exist, |project| creates new redirect .html file. For existing document, document's .html file will be overwritten with redirect file. To select multiple existing documents, a `source wildcards`_ can be used.
+
+*Target* (the value in ``redirects`` map) is a URL that will be used in HTML redirecting file. It may be specified using the placeholder to reuse docname in the target (see `Target placeholders`_).
+
+Target value must correspond to the output file naming of chosen builder. For example, html builder creates ``docname.html``, while dirhtml ``docname/index.html``.
+
+Redirect old documents
+**********************
+
+The basic usage is to redirect document you delete or rename to a new file within the same project. For example, if you rename ``setup.rst`` to ``install.rst``::
 
     redirects = {
-        "agents/intro": "agents/getting-started.html",
+        "setup": "install.html",
     }
 
-Or, if you output to dirhtml::
+Newly created ``setup.html`` will contain ``<meta http-equiv="refresh" content="0; url=install.html">``.
+
+Or, if you output to dirhtml, target must be a folder::
 
     redirects = {
-        "agents/*": "agents/getting-started/",
+        "setup": "install/",
     }
 
-Absolute URIs
-*************
+.. rubric:: Absolute URLs
 
-However, target URI maybe any value. For example, if particular page is now on the different website::
+The target maybe any value. For example, if particular page is now on the different website::
 
     redirects = {
-        "agents/intro": "https://anotherwebsite.com/docs/agents/intro.html",
+        "install/requirements": "https://anotherwebsite.com/docs/requirements.html",
     }
 
-Wildcards
-*********
+It will create ``install`` folder (if it does not exist) and ``requirements.html`` containing ``<meta http-equiv="refresh" content="0; url=https://anotherwebsite.com/docs/requirements.html">``.
 
-Source URI (the key in the ``redirects`` option) may be specified with wildcards.
+Redirect existing documents
+***************************
 
-Wildcards know only ``*``, ``?``, ``[seq]`` and ``[!seq]`` patterns. ``*`` matches everything, while ``?`` any single character. ``[seq]`` matches any character in the seq, ``[!seq]`` any character not in seq.
+Source (the key in the ``redirects`` option) may be specified with wildcards. If wildcard is used, it means that you want to expand it against existing documents. |project| creates redirect .html file that will overwrite original document's html file.
+
+For example, if all FAQ documents in ``faq/`` folder should be redirected to dedicated forum website, but you don't want to delete them in your documentation::
+
+    redirects = {
+        "faq/*": "https://website.com/forum/faq",
+    }
+
+Now, html files originally produced by documents in ``faq/`` like ``supported-os.html``, ``licencing.html``, etc., are all replaced with body ``<meta http-equiv="refresh" content="0; url=https://website.com/forum/faq">``
+
+Source wildcards
+****************
+
+Wildcards for selecting existing source documents know only ``*``, ``?``, ``[seq]`` and ``[!seq]`` patterns. 
+
+* ``*`` matches everything, while ``?`` any single character.
+* ``[seq]`` matches any character in the seq, ``[!seq]`` any character not in seq.
+
+(If you are curious, matching is using Python3 `fnmatch() <https://docs.python.org/3/library/fnmatch.html>`_.)
 
 .. important:: In other words, for example ``**`` used as "recursive" has no meaning here.
 
-Placeholders
-************
+Target placeholders
+*******************
 
-Matched part in the source URI, is available in the target URI as ``$source`` or ``${source}`` placeholder. Because source notation (a docname) is without suffix, you may need to append ``.html`` or ``/`` suffix after the placeholder.
+Matched document in the source, is available in the target as ``$source`` or ``${source}`` placeholder. Because source notation (a docname) is without suffix, you may need to append ``.html`` or ``/`` suffix after the placeholder.
 
-For example, if you move all documents from ``agents/`` to ``operators/`` folder::
-
-    redirects = {
-        "agents/*": "operators/$source.html",
-    }
-
-Or, if you output to dirhtml::
+For example, if all FAQ documents in ``faq/`` folder should be redirected to dedicated forum website with the identical filenames in URL, but you don't want to delete them in your documentation::
 
     redirects = {
-        "agents/*": "operators/$source/",
+        "faq/*": "https://website.com/forum/faq/$source",
     }
 
-Occasionally, you have to move complete documentation to the new home. It's easy with wildcard and placeholder::
+Now, html files originally produced by documents in ``faq/`` like ``supported-os.html``, ``licencing.html``, etc., have replaced bodies like ``<meta http-equiv="refresh" content="0; url=https://website.com/forum/faq/supported-os">``, etc.
 
-    redirects = {
-        "*": ""https://anotherwebsite.com/docs/$source.html"
-    }
+Redirect everything
+*******************
+
+Occasionally, you have to move complete documentation to a new home. It's easy with wildcard and placeholder::
+    
+   redirects = {
+       "*": "https://anotherwebsite.com/docs/$source.html"
+   }
 
 .. tip:: To help search engines to understand the transfer, update (or set) `html_baseurl <https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_baseurl>`_ option to the new website, too.
-
-Caveats and limitations
-***********************
-
-The |project| extension runs after the Sphinx build has finished. It works by creating files in build output directory (usually ``build/html``, ``_build/html``, etc.). If you instruct |project| to create redirect file at the path of existing HTML file produced by Sphinx, it will be overwritten without warning.
