@@ -54,13 +54,8 @@ html_logo = 'logo.png'
 
 html_theme = 'sphinx_documatt_theme'
 html_theme_options = {
-    'motto': f'{project} is the extension for <a href="https://www.sphinx-doc.org/">Sphinx documentation</a> projects that handles redirects for moved pages. Based on the its configuration, the extension generates HTML pages with meta refresh redirects to the new page location to prevent 404 errors if you rename or move your documents.',
+    'motto': f'{project} is the extension for <a href="https://www.sphinx-doc.org/">Sphinx documentation</a> projects that handles redirects for moved pages. It generates HTML pages with meta refresh redirects to the new page location to prevent 404 errors if you rename or move your documents.',
     'header_text': project,
     'header_logo_style': 'height: 3em',
     'footer_logo_style': 'height: 3em',
 }
-
-# Add any paths that contain custom static files (such as style sheets) here,
-# relative to this directory. They are copied after the builtin static files,
-# so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
