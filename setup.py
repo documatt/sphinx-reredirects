@@ -10,6 +10,7 @@ setup(
     description='Handles redirects for moved pages in Sphinx documentation '
     'projects',
     long_description=open('README.rst', encoding='utf-8').read(),
+    long_description_content_type='text/x-rst',
     packages=['sphinx_reredirects'],
     install_requires=[
         'sphinx'

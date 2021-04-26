@@ -16,7 +16,7 @@ Good URLs are never changing URLs. But if you must, sphinx-reredirects helps you
 About
 *****
 
-|project| started from the urge to manage redirects for all documents during moving our *Tech writer at work blog* to the new domain https://techwriter.documatt.com.
+sphinx-reredirects started from the urge to manage redirects for all documents during moving our *Tech writer at work blog* to the new domain https://techwriter.documatt.com.
 
 *****
 Legal
@@ -24,4 +24,4 @@ Legal
 
 Forward Arrow icon by `Icons8 <https://icons8.com/icon/74159/forward-arrow>`_.
 
-|project| is licensed under BSD3.
+sphinx-reredirects is licensed under BSD3.
