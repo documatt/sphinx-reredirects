@@ -16,6 +16,8 @@ REDIRECT_FILE_DEFAULT_TEMPLATE = '<html><head><meta http-equiv="refresh" content
 
 logger = logging.getLogger(__name__)
 
+wildcard_pattern = re.compile(r"[\*\?\[\]]")
+
 
 def setup(app: Sphinx):
     """
@@ -25,9 +27,6 @@ def setup(app: Sphinx):
     app.add_config_value(OPTION_REDIRECTS, OPTION_REDIRECTS_DEFAULT, "env")
     app.add_config_value(OPTION_TEMPLATE_FILE,
                          OPTION_TEMPLATE_FILE_DEFAULT, "env")
-
-
-wildcard_pattern = re.compile(r"[\*\?\[\]]")
 
 
 def init(app: Sphinx, exception):
