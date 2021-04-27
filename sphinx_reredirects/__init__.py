@@ -66,11 +66,11 @@ def init(app: Sphinx, exception):
 
             if redirect_file_abs.exists():
                 logger.info(f"Creating redirect file '{redirect_file_rel}' "
-                            "pointing to '{new_target}' that replaces "
-                            "'{doc}'.")
+                            f"pointing to '{new_target}' that replaces "
+                            f"'{doc}'.")
             else:
                 logger.info(f"Creating redirect file '{redirect_file_rel}' "
-                            "pointing to '{new_target}'.")
+                            f"pointing to '{new_target}'.")
 
             create_redirect_file(
                 redirect_template, redirect_file_abs, new_target)
