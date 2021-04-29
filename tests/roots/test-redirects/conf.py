@@ -1,0 +1,3 @@
+extensions = [
+    'sphinx_reredirects'
+]
