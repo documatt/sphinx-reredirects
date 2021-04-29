@@ -2,6 +2,7 @@ import re
 from fnmatch import fnmatch
 from pathlib import Path
 from string import Template
+from typing import Mapping
 
 from sphinx.application import Sphinx
 from sphinx.util import logging
@@ -30,65 +31,94 @@ def setup(app: Sphinx):
 
 
 def init(app: Sphinx, exception):
-    redirects: dict = app.config[OPTION_REDIRECTS]
-    template_file: str = app.config[OPTION_TEMPLATE_FILE]
-
-    if not redirects:
+    if not app.config[OPTION_REDIRECTS]:
         logger.debug('No redirects configured')
         return
 
-    # HTML used as redirect file content
-    redirect_template = REDIRECT_FILE_DEFAULT_TEMPLATE
-    if template_file:
-        redirect_file_abs = Path(app.srcdir, template_file)
-        redirect_template = redirect_file_abs.read_text()
+    rr = Reredirects(app)
+    to_be_redirected = rr.grab_redirects()
+    rr.create_redirects(to_be_redirected)
 
-    # For each source-target redirect pair in conf.py
-    for source, target in redirects.items():
-        to_be_redirected = []
-        # if wildcarded source, expand pattern to existing docs
-        if contains_wildcard(source):
-            for doc in app.env.found_docs:
-                if fnmatch(doc, source):
-                    to_be_redirected.append(doc)
-            if not to_be_redirected:
+
+class Reredirects:
+    def __init__(self, app: Sphinx):
+        self.app = app
+        self.redirects_option: dict = app.config[OPTION_REDIRECTS]
+        self.template_file_option: str = app.config[OPTION_TEMPLATE_FILE]
+
+    def grab_redirects(self) -> Mapping[str, str]:
+        """Inspect redirects option in conf.py and returns dict mapping \
+        docname to target (with expanded placeholder)."""
+        # docname-target dict
+        to_be_redirected = {}
+
+        # For each source-target redirect pair in conf.py
+        for source, target in self.redirects_option.items():
+            # no wildcard, append source as-is
+            if not self._contains_wildcard(source):
+                to_be_redirected[source] = target
+                continue
+
+            # wildcarded source, expand to docnames
+            expanded_docs = [
+                doc for doc in self.app.env.found_docs if fnmatch(doc, source)]
+
+            if not expanded_docs:
                 logger.warning(f"No documents match to '{source}' redirect.")
-        else:
-            # append source as-is
-            to_be_redirected.append(source)
+                continue
 
-        for doc in to_be_redirected:
-            #  apply placeholder, create redirect file
-            new_target = apply_placeholders(doc, target)
-            redirect_file_abs = Path(app.outdir).joinpath(
+            for doc in expanded_docs:
+                new_target = self._apply_placeholders(doc, target)
+                to_be_redirected[doc] = new_target
+
+        return to_be_redirected
+
+    def create_redirects(self, to_be_redirected: Mapping[str, str]):
+        """Create actual redirect file for each pair in passed mapping of \
+        docnames to targets."""
+        for doc, target in to_be_redirected.items():
+            redirect_file_abs = Path(self.app.outdir).joinpath(
                 doc).with_suffix(".html")
-            redirect_file_rel = redirect_file_abs.relative_to(app.outdir)
+            redirect_file_rel = redirect_file_abs.relative_to(self.app.outdir)
 
             if redirect_file_abs.exists():
                 logger.info(f"Creating redirect file '{redirect_file_rel}' "
-                            f"pointing to '{new_target}' that replaces "
-                            f"'{doc}'.")
+                            f"pointing to '{target}' that replaces "
+                            f"document '{doc}'.")
             else:
                 logger.info(f"Creating redirect file '{redirect_file_rel}' "
-                            f"pointing to '{new_target}'.")
+                            f"pointing to '{target}'.")
 
-            create_redirect_file(
-                redirect_template, redirect_file_abs, new_target)
+            self._create_redirect_file(redirect_file_abs, target)
 
+    @staticmethod
+    def _contains_wildcard(text):
+        """Tells whether passed argument contains wildcard characters."""
+        return bool(wildcard_pattern.search(text))
 
-def contains_wildcard(text):
-    """Tells whether passed argument contains wildcard characters."""
-    return bool(wildcard_pattern.search(text))
+    @staticmethod
+    def _apply_placeholders(source: str, target: str) -> str:
+        """Expand "source" placeholder in target and return it"""
+        return Template(target).substitute({"source": source})
 
+    def _create_redirect_file(self, at_path: Path, to_uri: str) -> None:
+        """Actually create a redirect file according to redirect template"""
 
-def apply_placeholders(source: str, target: str) -> str:
-    return Template(target).substitute({"source": source})
+        content = self._render_redirect_template(to_uri)
 
+        # create any missing parent folders
+        at_path.parent.mkdir(parents=True, exist_ok=True)
 
-def create_redirect_file(template: str, at_path: Path, to_uri: str) -> None:
-    content = Template(template).substitute({"to_uri": to_uri})
+        at_path.write_text(content)
 
-    # create any missing parent folders
-    at_path.parent.mkdir(parents=True, exist_ok=True)
+    def _render_redirect_template(self, to_uri) -> str:
+        # HTML used as redirect file content
+        redirect_template = REDIRECT_FILE_DEFAULT_TEMPLATE
+        if self.template_file_option:
+            redirect_file_abs = Path(
+                self.app.srcdir, self.template_file_option)
+            redirect_template = redirect_file_abs.read_text()
 
-    at_path.write_text(content)
+        content = Template(redirect_template).substitute({"to_uri": to_uri})
+
+        return content
