@@ -1,3 +1,1 @@
-extensions = [
-    'sphinx_reredirects'
-]
+extensions = ['sphinx_reredirects']

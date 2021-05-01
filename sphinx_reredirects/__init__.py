@@ -2,18 +2,18 @@ import re
 from fnmatch import fnmatch
 from pathlib import Path
 from string import Template
-from typing import Mapping
+from typing import Dict, Mapping
 
 from sphinx.application import Sphinx
 from sphinx.util import logging
 
 OPTION_REDIRECTS = "redirects"
-OPTION_REDIRECTS_DEFAULT = {}
+OPTION_REDIRECTS_DEFAULT: Dict[str, str] = {}
 
 OPTION_TEMPLATE_FILE = "redirect_html_template_file"
 OPTION_TEMPLATE_FILE_DEFAULT = None
 
-REDIRECT_FILE_DEFAULT_TEMPLATE = '<html><head><meta http-equiv="refresh" content="0; url=${to_uri}"></head></html>'     # noqa: E501
+REDIRECT_FILE_DEFAULT_TEMPLATE = '<html><head><meta http-equiv="refresh" content="0; url=${to_uri}"></head></html>'  # noqa: E501
 
 logger = logging.getLogger(__name__)
 
@@ -26,8 +26,8 @@ def setup(app: Sphinx):
     """
     app.connect("build-finished", init)
     app.add_config_value(OPTION_REDIRECTS, OPTION_REDIRECTS_DEFAULT, "env")
-    app.add_config_value(OPTION_TEMPLATE_FILE,
-                         OPTION_TEMPLATE_FILE_DEFAULT, "env")
+    app.add_config_value(OPTION_TEMPLATE_FILE, OPTION_TEMPLATE_FILE_DEFAULT,
+                         "env")
 
 
 def init(app: Sphinx, exception):
@@ -43,8 +43,11 @@ def init(app: Sphinx, exception):
 class Reredirects:
     def __init__(self, app: Sphinx):
         self.app = app
-        self.redirects_option: dict = app.config[OPTION_REDIRECTS]
-        self.template_file_option: str = app.config[OPTION_TEMPLATE_FILE]
+        self.redirects_option: Dict[str,
+                                    str] = getattr(app.config,
+                                                   OPTION_REDIRECTS)
+        self.template_file_option: str = getattr(app.config,
+                                                 OPTION_TEMPLATE_FILE)
 
     def grab_redirects(self) -> Mapping[str, str]:
         """Inspect redirects option in conf.py and returns dict mapping \
@@ -61,7 +64,8 @@ class Reredirects:
 
             # wildcarded source, expand to docnames
             expanded_docs = [
-                doc for doc in self.app.env.found_docs if fnmatch(doc, source)]
+                doc for doc in self.app.env.found_docs if fnmatch(doc, source)
+            ]
 
             if not expanded_docs:
                 logger.warning(f"No documents match to '{source}' redirect.")
@@ -77,8 +81,8 @@ class Reredirects:
         """Create actual redirect file for each pair in passed mapping of \
         docnames to targets."""
         for doc, target in to_be_redirected.items():
-            redirect_file_abs = Path(self.app.outdir).joinpath(
-                doc).with_suffix(".html")
+            redirect_file_abs = Path(
+                self.app.outdir).joinpath(doc).with_suffix(".html")
             redirect_file_rel = redirect_file_abs.relative_to(self.app.outdir)
 
             if redirect_file_abs.exists():
@@ -115,8 +119,8 @@ class Reredirects:
         # HTML used as redirect file content
         redirect_template = REDIRECT_FILE_DEFAULT_TEMPLATE
         if self.template_file_option:
-            redirect_file_abs = Path(
-                self.app.srcdir, self.template_file_option)
+            redirect_file_abs = Path(self.app.srcdir,
+                                     self.template_file_option)
             redirect_template = redirect_file_abs.read_text()
 
         content = Template(redirect_template).substitute({"to_uri": to_uri})
