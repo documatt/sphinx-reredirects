@@ -5,6 +5,7 @@ dist
 *.egg-info
 build
 .eggs
+.tox
 
 # IDEs
 .idea/

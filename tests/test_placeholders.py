@@ -27,7 +27,8 @@ def test_no_placeholder():
 
 
 @pytest.mark.xfail(
-    reason="To be fixed. Reported in https://gitlab.com/documatt/sphinx-reredirects/-/issues/1"  # noqa: E501
+    reason=  # noqa: E251 (no space around =)
+    "To be fixed. Reported in https://gitlab.com/documatt/sphinx-reredirects/-/issues/1"  # noqa: E501 (too long line)
 )
 def test_source_placeholder_returns_just_matched_part():
     sphinx_mock = Mock()
