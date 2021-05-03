@@ -1,16 +1,34 @@
-pages:
-  only:
-    - master
-  image: python:3.6
-  variables:
-    PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
-  cache:
-    paths:
-      - .cache/pip
-      - venv
+image: python:3.6
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+cache:
+  paths:
+    - .cache/pip
+    - venv
+    - .tox
+
+before_script:
+  - python3 --version
+  - python3 -m pip install tox
+
+test:
+  stage: test
   script:
-    - python3 -m pip install -r requirements.txt
-    - sphinx-build -b html -q docs public
+    - tox
+
+docs:
+  stage: test
+  script:
+    - tox -e docs
+
+pages:
+  # only:
+  #   - master
+  stage: deploy
+  script:
+    - tox -e docs
   artifacts:
     paths:
       - public
