@@ -82,8 +82,13 @@ class Reredirects:
     def create_redirects(self, to_be_redirected: Mapping[str, str]):
         """Create actual redirect file for each pair in passed mapping of \
         docnames to targets."""
+        if self.app.config.html_file_suffix is not None:
+            suffix = self.app.config.html_file_suffix
+        else:
+            suffix = ".html"
+
         for doc, target in to_be_redirected.items():
-            redirect_file_abs = Path(self.app.outdir).joinpath(doc).with_suffix(".html")
+            redirect_file_abs = Path(self.app.outdir).joinpath(doc).with_suffix(suffix)
             redirect_file_rel = redirect_file_abs.relative_to(self.app.outdir)
 
             if redirect_file_abs.exists():
