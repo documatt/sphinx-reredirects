@@ -66,6 +66,8 @@ class Reredirects:
                 to_be_redirected[source] = target
                 continue
 
+            assert self.app.env
+
             # wildcarded source, expand to docnames
             expanded_docs = [
                 doc for doc in self.app.env.found_docs if fnmatch(doc, source)
