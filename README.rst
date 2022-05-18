@@ -5,6 +5,15 @@ sphinx-reredirects
 .. image:: logo.png
    :align: right
 
+.. image:: https://gitlab.com/documatt/sphinx-reredirects/badges/master/pipeline.svg
+   :target: https://gitlab.com/documatt/sphinx-reredirects/-/commits/master
+
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+   :target: https://github.com/psf/black
+
+.. image:: https://img.shields.io/pypi/v/sphinx-reredirects
+   :target: https://pypi.org/project/sphinx-reredirects/
+
 sphinx-reredirects is the extension for `Sphinx documentation <https://https://www.sphinx-doc.org/>`_ projects that handles redirects for moved pages. It generates HTML pages with meta refresh redirects to the new page location to prevent 404 errors if you rename or move your documents.
 
 * docs: https://documatt.gitlab.io/sphinx-reredirects
