@@ -26,13 +26,12 @@ def setup(app: Sphinx):
     """
     app.connect("html-collect-pages", init)
     app.add_config_value(OPTION_REDIRECTS, OPTION_REDIRECTS_DEFAULT, "env")
-    app.add_config_value(OPTION_TEMPLATE_FILE, OPTION_TEMPLATE_FILE_DEFAULT,
-                         "env")
+    app.add_config_value(OPTION_TEMPLATE_FILE, OPTION_TEMPLATE_FILE_DEFAULT, "env")
 
 
 def init(app: Sphinx):
     if not app.config[OPTION_REDIRECTS]:
-        logger.debug('No redirects configured')
+        logger.debug("No redirects configured")
         return
 
     rr = Reredirects(app)
@@ -47,11 +46,8 @@ def init(app: Sphinx):
 class Reredirects:
     def __init__(self, app: Sphinx):
         self.app = app
-        self.redirects_option: Dict[str,
-                                    str] = getattr(app.config,
-                                                   OPTION_REDIRECTS)
-        self.template_file_option: str = getattr(app.config,
-                                                 OPTION_TEMPLATE_FILE)
+        self.redirects_option: Dict[str, str] = getattr(app.config, OPTION_REDIRECTS)
+        self.template_file_option: str = getattr(app.config, OPTION_TEMPLATE_FILE)
 
     def grab_redirects(self) -> Mapping[str, str]:
         """Inspect redirects option in conf.py and returns dict mapping \
@@ -87,17 +83,20 @@ class Reredirects:
         """Create actual redirect file for each pair in passed mapping of \
         docnames to targets."""
         for doc, target in to_be_redirected.items():
-            redirect_file_abs = Path(
-                self.app.outdir).joinpath(doc).with_suffix(".html")
+            redirect_file_abs = Path(self.app.outdir).joinpath(doc).with_suffix(".html")
             redirect_file_rel = redirect_file_abs.relative_to(self.app.outdir)
 
             if redirect_file_abs.exists():
-                logger.info(f"Creating redirect file '{redirect_file_rel}' "
-                            f"pointing to '{target}' that replaces "
-                            f"document '{doc}'.")
+                logger.info(
+                    f"Creating redirect file '{redirect_file_rel}' "
+                    f"pointing to '{target}' that replaces "
+                    f"document '{doc}'."
+                )
             else:
-                logger.info(f"Creating redirect file '{redirect_file_rel}' "
-                            f"pointing to '{target}'.")
+                logger.info(
+                    f"Creating redirect file '{redirect_file_rel}' "
+                    f"pointing to '{target}'."
+                )
 
             self._create_redirect_file(redirect_file_abs, target)
 
@@ -125,8 +124,7 @@ class Reredirects:
         # HTML used as redirect file content
         redirect_template = REDIRECT_FILE_DEFAULT_TEMPLATE
         if self.template_file_option:
-            redirect_file_abs = Path(self.app.srcdir,
-                                     self.template_file_option)
+            redirect_file_abs = Path(self.app.srcdir, self.template_file_option)
             redirect_template = redirect_file_abs.read_text()
 
         content = Template(redirect_template).substitute({"to_uri": to_uri})
