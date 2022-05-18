@@ -17,9 +17,9 @@ By default, ``redirects`` is empty (i.e. generates no redirect files).
 
 Source may be non-existing document or existing document. If source does not exist, |project| creates new redirect .html file. For existing document, document's .html file will be overwritten with redirect file. To select multiple existing documents, a `source wildcards`_ can be used.
 
-*Target* (the value in ``redirects`` map) is a URL that will be used in HTML redirecting file. It may be specified using the placeholder to reuse docname in the target (see `Target placeholders`_).
+*Target* (the value in ``redirects`` map) is an URL that will be used in the HTML redirecting file. It may be specified using the placeholder to reuse source docname (see `Target placeholders`_).
 
-Target value must correspond to the output file naming of chosen builder. For example, html builder creates ``docname.html``, while dirhtml ``docname/index.html``.
+Target value must correspond to the output file naming of chosen Sphinx builder. For example, html builder creates ``docname.html``, while dirhtml ``docname/index.html``.
 
 .. important:: The extension works only for HTML-based builders like html and dirhtml. When building to other outputs (linkcheck, latex), it does nothing.
 
@@ -63,10 +63,10 @@ For example, if all FAQ documents in ``faq/`` folder should be redirected to ded
 
 Now, html files originally produced by documents in ``faq/`` like ``supported-os.html``, ``licencing.html``, etc., are all replaced with body ``<meta http-equiv="refresh" content="0; url=https://website.com/forum/faq">``
 
-Source wildcards
-****************
+Wildcard syntax
+===============
 
-Wildcards for selecting existing source documents know only ``*``, ``?``, ``[seq]`` and ``[!seq]`` patterns. 
+Wildcards for selecting existing source documents know only ``*``, ``?``, ``[seq]`` and ``[!seq]`` patterns.
 
 * ``*`` matches everything, while ``?`` any single character.
 * ``[seq]`` matches any character in the seq, ``[!seq]`` any character not in seq.
@@ -92,7 +92,7 @@ Redirect everything
 *******************
 
 Occasionally, you have to move complete documentation to a new home. It's easy with wildcard and placeholder::
-    
+
    redirects = {
        "*": "https://anotherwebsite.com/docs/$source.html"
    }
