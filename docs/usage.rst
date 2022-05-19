@@ -23,6 +23,16 @@ Target value must correspond to the output file naming of chosen Sphinx builder.
 
 .. important:: The extension works only for HTML-based builders like html and dirhtml. When building to other outputs (linkcheck, latex), it does nothing.
 
+The redirect is relative to the current page. So, if you want to redirect ``guides/index.html`` to ``index.html`` use:
+
+.. highlight:: python3
+
+::
+
+   redirects = {
+        "guides/index": "../index.html"
+   }
+
 Redirect old documents
 **********************
 
