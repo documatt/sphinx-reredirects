@@ -6,6 +6,7 @@ from typing import Dict, Mapping, Optional, Sequence
 
 from sphinx.application import Sphinx
 from sphinx.util import logging
+from sphinx.util.osutil import SEP
 
 OPTION_REDIRECTS = "redirects"
 OPTION_REDIRECTS_DEFAULT: Dict[str, str] = {}
@@ -79,16 +80,44 @@ class Reredirects:
 
         return to_be_redirected
 
+    def docname_out_path(self, docname: str, suffix: str) -> Sequence[str]:
+        """
+        For a Sphinx docname (the path to a source document without suffix),
+        returns path to outfile that would be created by the used builder.
+        """
+        # Return as-is, if the docname already has been passed with a suffix
+        if docname.endswith(suffix):
+            return [docname]
+
+        # Remove any trailing slashes, except for "/"" index
+        if len(docname) > 1 and docname.endswith(SEP):
+            docname = docname.rstrip(SEP)
+
+        # Figure out whether we have dirhtml builder
+        out_uri = self.app.builder.get_target_uri(docname=docname)  # type: ignore
+
+        if not out_uri.endswith(suffix):
+            # If dirhtml builder is used, need to append "index"
+            return [out_uri, "index"]
+
+        # Otherwise, convert e.g. 'source' to 'source.html'
+        return [out_uri]
+
     def create_redirects(self, to_be_redirected: Mapping[str, str]) -> None:
         """Create actual redirect file for each pair in passed mapping of \
         docnames to targets."""
-        if self.app.config.html_file_suffix is not None:
-            suffix = self.app.config.html_file_suffix
-        else:
+
+        # Corresponds to value of `html_file_suffix`, but takes into account
+        # modifications done by the builder class
+        try:
+            suffix = self.app.builder.out_suffix  # type: ignore
+        except Exception:
             suffix = ".html"
 
-        for doc, target in to_be_redirected.items():
-            redirect_file_abs = Path(self.app.outdir).joinpath(doc).with_suffix(suffix)
+        for docname, target in to_be_redirected.items():
+            out = self.docname_out_path(docname, suffix)
+            redirect_file_abs = Path(self.app.outdir).joinpath(*out).with_suffix(suffix)
+
             redirect_file_rel = redirect_file_abs.relative_to(self.app.outdir)
 
             if redirect_file_abs.exists():
