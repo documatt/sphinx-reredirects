@@ -15,7 +15,7 @@ By default, ``redirects`` is empty (i.e. generates no redirect files).
 
 *Source* (the key in ``redirects`` map) is a *docname*, i.e. document path without a suffix (an extension). Most Sphinx projects use ``.rst`` as extension. For example, a docname for the file ``index.rst`` is ``index``, for ``agents/intro.rst`` is ``agents/intro``, etc.
 
-Source may be non-existing document or existing document. If source does not exist, |project| creates new redirect .html file. For existing document, document's .html file will be overwritten with redirect file. To select multiple existing documents, a `source wildcards`_ can be used.
+Source may be non-existing document or existing document. If source does not exist, |project| creates new redirect .html file. For existing document, document's .html file will be overwritten with redirect file. To select multiple existing documents, a `source wildcards <Wildcard syntax_>`_ can be used.
 
 *Target* (the value in ``redirects`` map) is an URL that will be used in the HTML redirecting file. It may be specified using the placeholder to reuse source docname (see `Target placeholders`_).
 
