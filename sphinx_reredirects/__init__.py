@@ -2,7 +2,7 @@ import re
 from fnmatch import fnmatch
 from pathlib import Path
 from string import Template
-from typing import Dict, Mapping
+from typing import Dict, Mapping, Optional, Sequence
 
 from sphinx.application import Sphinx
 from sphinx.util import logging
@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 wildcard_pattern = re.compile(r"[\*\?\[\]]")
 
 
-def setup(app: Sphinx):
+def setup(app: Sphinx) -> None:
     """
     Extension setup, called by Sphinx
     """
@@ -29,10 +29,10 @@ def setup(app: Sphinx):
     app.add_config_value(OPTION_TEMPLATE_FILE, OPTION_TEMPLATE_FILE_DEFAULT, "env")
 
 
-def init(app: Sphinx):
+def init(app: Sphinx) -> Optional[Sequence]:
     if not app.config[OPTION_REDIRECTS]:
         logger.debug("No redirects configured")
-        return
+        return []
 
     rr = Reredirects(app)
     to_be_redirected = rr.grab_redirects()
@@ -44,7 +44,7 @@ def init(app: Sphinx):
 
 
 class Reredirects:
-    def __init__(self, app: Sphinx):
+    def __init__(self, app: Sphinx) -> None:
         self.app = app
         self.redirects_option: Dict[str, str] = getattr(app.config, OPTION_REDIRECTS)
         self.template_file_option: str = getattr(app.config, OPTION_TEMPLATE_FILE)
@@ -79,7 +79,7 @@ class Reredirects:
 
         return to_be_redirected
 
-    def create_redirects(self, to_be_redirected: Mapping[str, str]):
+    def create_redirects(self, to_be_redirected: Mapping[str, str]) -> None:
         """Create actual redirect file for each pair in passed mapping of \
         docnames to targets."""
         if self.app.config.html_file_suffix is not None:
@@ -106,7 +106,7 @@ class Reredirects:
             self._create_redirect_file(redirect_file_abs, target)
 
     @staticmethod
-    def _contains_wildcard(text):
+    def _contains_wildcard(text: str) -> bool:
         """Tells whether passed argument contains wildcard characters."""
         return bool(wildcard_pattern.search(text))
 
@@ -125,7 +125,7 @@ class Reredirects:
 
         at_path.write_text(content)
 
-    def _render_redirect_template(self, to_uri) -> str:
+    def _render_redirect_template(self, to_uri: str) -> str:
         # HTML used as redirect file content
         redirect_template = REDIRECT_FILE_DEFAULT_TEMPLATE
         if self.template_file_option:
