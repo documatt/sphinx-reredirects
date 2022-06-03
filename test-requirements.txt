@@ -1,2 +1,1 @@
-sphinx
-pytest
+sphinx==5.0.1
