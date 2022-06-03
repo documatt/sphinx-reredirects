@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="sphinx_reredirects",
-    version="0.0.1",
+    version="0.1.1",
     url="https://gitlab.com/documatt/sphinx-reredirects",
     license="BSD3",
     author="Matt from Documatt",
@@ -12,6 +12,7 @@ setup(
     long_description_content_type="text/x-rst",
     packages=["sphinx_reredirects"],
     install_requires=["sphinx"],
+    python_requires=">=3.5",
     setup_requires=["wheel"],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
@@ -22,7 +23,7 @@ setup(
         "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.5",
         "Topic :: Documentation",
         "Topic :: Documentation :: Sphinx",
         "Topic :: Utilities",
