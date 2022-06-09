@@ -2,7 +2,7 @@
 sphinx-reredirects
 ##################
 
-.. image:: logo.png
+.. image:: https://img.icons8.com/wired/64/undefined/forward-arrow--v1.png
    :align: right
 
 .. image:: https://gitlab.com/documatt/sphinx-reredirects/badges/master/pipeline.svg
