@@ -6,11 +6,11 @@ Part 1: Git release
 
 #. Choose version.
 
-   $ export VERSION=0.0.1
-
 #. Describe new version in ``docs/rn.rst``.
 
-#. Create commit with message "release $VERSION".
+#. Increment version in setup.py.
+
+#. Create commit with message "release <version>".
 
 #. Run local tests
 
@@ -22,9 +22,9 @@ Part 1: Git release
 
 #. Wait for CI.
 
-#. If they CI passed, stay on master branch, tag just released commit.
+#. If they CI passed, stay on master branch, tag just released commit as "vX.Y.Z"
 
-   $ git tag -a $VERSION
+   $ git tag -a vX.Y.Z
    $ git push origin HEAD
 
 Part 2: PyPI release
@@ -32,7 +32,7 @@ Part 2: PyPI release
 
 #. If no errors so far, build with
 
-   $ tox -e release
+   $ tox -e build
 
    that creates sdist and wheel in dist/.
 
@@ -40,7 +40,7 @@ Part 2: PyPI release
 
    $ tox -e publish
 
-   and go to https://....
+   and go to https://test.pypi.org/project/sphinx-reredirects/<version>/
 
 #. If you are happy with it, upload to PyPI.
 
