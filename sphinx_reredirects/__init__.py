@@ -122,15 +122,10 @@ class Reredirects:
 
             if redirect_file_abs.exists():
                 logger.info(
-                    f"Creating redirect file '{redirect_file_rel}' "
-                    f"pointing to '{target}' that replaces "
-                    f"document '{docname}'."
+                    f"Overwriting '{redirect_file_rel}' with redirect to '{target}'."
                 )
             else:
-                logger.info(
-                    f"Creating redirect file '{redirect_file_rel}' "
-                    f"pointing to '{target}'."
-                )
+                logger.info(f"Creating redirect '{redirect_file_rel}' to '{target}'.")
 
             self._create_redirect_file(redirect_file_abs, target)
 

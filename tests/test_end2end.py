@@ -25,7 +25,7 @@ def test_ext(app: Sphinx, status, warning):
     ).read_text() == '<html><head><meta http-equiv="refresh" content="0; url=https://new.com/faq/one.html"></head></html>'  # noqa: E501
 
     assert (
-        """Creating redirect file 'faq/one.html' pointing to 'https://new.com/faq/one.html' that replaces document 'faq/one'."""  # noqa: E501
+        """Overwriting 'faq/one.html' with redirect to 'https://new.com/faq/one.html'."""  # noqa: E501
         in status
     )
 
@@ -34,7 +34,7 @@ def test_ext(app: Sphinx, status, warning):
     ).read_text() == '<html><head><meta http-equiv="refresh" content="0; url=https://new.com/faq/two.html"></head></html>'  # noqa: E501
 
     assert (
-        """Creating redirect file 'faq/two.html' pointing to 'https://new.com/faq/two.html' that replaces document 'faq/two'."""  # noqa: E501
+        """Overwriting 'faq/two.html' with redirect to 'https://new.com/faq/two.html'."""  # noqa: E501
         in status
     )
 
@@ -43,7 +43,7 @@ def test_ext(app: Sphinx, status, warning):
     ).read_text() == '<html><head><meta http-equiv="refresh" content="0; url=go-to-install"></head></html>'  # noqa: E501
 
     assert (
-        """Creating redirect file 'install.html' pointing to 'go-to-install' that replaces document 'install'."""  # noqa: E501
+        """Overwriting 'install.html' with redirect to 'go-to-install'."""  # noqa: E501
         in status
     )
 
@@ -51,16 +51,14 @@ def test_ext(app: Sphinx, status, warning):
         app.outdir / "setup.html"
     ).read_text() == '<html><head><meta http-equiv="refresh" content="0; url=install.html"></head></html>'  # noqa: E501
 
-    assert (
-        """Creating redirect file 'setup.html' pointing to 'install.html'.""" in status
-    )
+    assert """Creating redirect 'setup.html' to 'install.html'.""" in status
 
     assert (
         app.outdir / "install/requirements.html"
     ).read_text() == '<html><head><meta http-equiv="refresh" content="0; url=https://web.com/docs/requirements.html"></head></html>'  # noqa: E501
 
     assert (
-        """Creating redirect file 'install/requirements.html' pointing to 'https://web.com/docs/requirements.html'."""  # noqa: E501
+        """Creating redirect 'install/requirements.html' to 'https://web.com/docs/requirements.html'."""  # noqa: E501
         in status
     )
 
@@ -89,12 +87,12 @@ def test_dirhtml(app: Sphinx, status, warning):
     ).read_text() == '<html><head><meta http-equiv="refresh" content="0; url=http://new.com/index"></head></html>'  # noqa: E501
 
     assert (
-        """Creating redirect file 'index.html' pointing to '/newindex/' that replaces document 'index.html'."""  # noqa: E501
+        """Overwriting 'index.html' with redirect to '/newindex/'."""  # noqa: E501
         in status
     )
 
     assert (
-        """Creating redirect file 'index.html' pointing to 'http://new.com/index' that replaces document 'index'."""  # noqa: E501
+        """Overwriting 'index.html' with redirect to 'http://new.com/index'."""  # noqa: E501
         in status
     )
 
@@ -103,22 +101,22 @@ def test_dirhtml(app: Sphinx, status, warning):
     ).read_text() == '<html><head><meta http-equiv="refresh" content="0; url=/installing.html"></head></html>'  # noqa: E501
 
     assert (
-        """Creating redirect file 'install/index.html' pointing to '/installing/trailingslash'."""  # noqa: E501
+        """Creating redirect 'install/index.html' to '/installing/trailingslash'."""  # noqa: E501
         in status
     )
 
     assert (
-        """Creating redirect file 'install/index.html' pointing to '/installing/trailingslash' that replaces document 'install/'."""  # noqa: E501
+        """Overwriting 'install/index.html' with redirect to '/installing/trailingslash'."""  # noqa: E501
         in status
     )
 
     assert (
-        """Creating redirect file 'install/index.html' pointing to '/installing' that replaces document 'install/index'."""  # noqa: E501
+        """Overwriting 'install/index.html' with redirect to '/installing'."""  # noqa: E501
         in status
     )
 
     assert (
-        """Creating redirect file 'install/index.html' pointing to '/installing.html' that replaces document 'install/index.html'."""  # noqa: E501
+        """Overwriting 'install/index.html' with redirect to '/installing.html'."""  # noqa: E501
         in status
     )
 
