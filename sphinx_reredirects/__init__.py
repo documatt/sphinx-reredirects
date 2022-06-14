@@ -124,7 +124,7 @@ class Reredirects:
                 logger.info(
                     f"Creating redirect file '{redirect_file_rel}' "
                     f"pointing to '{target}' that replaces "
-                    f"document '{doc}'."
+                    f"document '{docname}'."
                 )
             else:
                 logger.info(
