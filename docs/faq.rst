@@ -15,7 +15,7 @@ By default, created HTML redirect files contains ``<html><head><meta http-equiv=
 
 If you want JavaScript redirection instead, wait longer, or whatever, set ``redirect_html_template`` option. This option should points to file inside source dir (directory containing ``conf.py``). For example::
 
-    redirect_html_template = "redirect.html.template"
+    redirect_html_template_file = "redirect.html.template"
 
 Actual target URI requested in configuration is available under ``${to_uri}`` placeholder.
 
