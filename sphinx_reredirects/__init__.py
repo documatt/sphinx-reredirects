@@ -21,13 +21,14 @@ logger = logging.getLogger(__name__)
 wildcard_pattern = re.compile(r"[\*\?\[\]]")
 
 
-def setup(app: Sphinx) -> None:
+def setup(app: Sphinx) -> Dict:
     """
     Extension setup, called by Sphinx
     """
     app.connect("html-collect-pages", init)
     app.add_config_value(OPTION_REDIRECTS, OPTION_REDIRECTS_DEFAULT, "env")
     app.add_config_value(OPTION_TEMPLATE_FILE, OPTION_TEMPLATE_FILE_DEFAULT, "env")
+    return dict(parallel_read_safe=True)
 
 
 def init(app: Sphinx) -> Optional[Sequence]:
