@@ -1,6 +1,13 @@
 Release notes
 #############
 
+0.1.2 (2023-05-18)
+******************
+
+- be explicit about parallel reads (by `Feanil Patel <https://gitlab.com/documatt/sphinx-reredirects/-/merge_requests/10>`__)
+- docs: fix URL in README (by `Angus Hollands <https://gitlab.com/documatt/sphinx-reredirects/-/merge_requests/9>`__ `T <https://twitter.com/agoose77>`__)
+- docs: fix name of redirect template option (by `Angus Hollands <https://gitlab.com/documatt/sphinx-reredirects/-/merge_requests/8>`__ `T <https://twitter.com/agoose77>`__)
+
 0.1.1 (2022-06-04)
 ******************
 

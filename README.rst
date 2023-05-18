@@ -25,7 +25,7 @@ Good URLs are never changing URLs. But if you must, sphinx-reredirects helps you
 About
 *****
 
-sphinx-reredirects started from the urge to manage redirects for all documents during moving our *Tech writer at work blog* to the new domain https://techwriter.documatt.com.
+sphinx-reredirects started from the urge to manage redirects for all documents during moving our *Tech writer at work blog* to the new domain https://documatt.com/blog/.
 
 *****
 Legal

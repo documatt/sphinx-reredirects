@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name="sphinx_reredirects",
-    version="0.1.1",
+    version="0.1.2",
     url="https://gitlab.com/documatt/sphinx-reredirects",
     license="BSD3",
     author="Matt from Documatt",
