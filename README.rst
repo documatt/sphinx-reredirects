@@ -5,8 +5,8 @@ sphinx-reredirects
 .. image:: logo.png
    :align: right
 
-.. image:: https://gitlab.com/documatt/sphinx-reredirects/badges/master/pipeline.svg
-   :target: https://gitlab.com/documatt/sphinx-reredirects/-/commits/master
+.. image:: https://github.com/documatt/sphinx-reredirects/actions/workflows/tests.yml/badge.svg
+   :target: https://github.com/documatt/sphinx-reredirects/actions/workflows/tests.yml
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
    :target: https://github.com/psf/black

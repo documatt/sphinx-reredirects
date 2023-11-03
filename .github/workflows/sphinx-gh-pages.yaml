@@ -1,5 +1,5 @@
 # Sample workflow for building and deploying a Sphinx site to GitHub Pages
-name: Deploy Sphinx with GitHub Pages
+name: Deploy docs with GitHub Pages
 
 on:
   # Runs on pushes targeting the default branch
