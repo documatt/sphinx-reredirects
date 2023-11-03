@@ -1,23 +1,20 @@
 # Python
-venv/
+.venv/
 __pycache__
 dist
 *.egg-info
 build
 .eggs
 .tox
+_build
+build
+_site
 
 # IDEs
-.idea/
-!.idea/runConfigurations
 .vscode/
-
-# Where GitLab Pages expects website
-public/
 
 # Sphinx
 .doctrees
-_build
 
 # Mac
 .DS_Store

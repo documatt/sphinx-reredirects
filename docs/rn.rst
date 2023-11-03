@@ -1,6 +1,11 @@
 Release notes
 #############
 
+0.1.3 (2023-11-03)
+******************
+
+- No new features, maintenance release. Contains only fixed URLs because `the project lives now GitHub <https://github.com/documatt/sphinx-reredirects/>`_.
+
 0.1.2 (2023-05-18)
 ******************
 

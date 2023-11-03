@@ -21,7 +21,7 @@ from datetime import date
 
 project = 'sphinx-reredirects'
 copyright = f'{date.today().year}, Documatt'
-author = 'Matt'
+author = 'Documatt.com'
 
 
 # -- General configuration ---------------------------------------------------
@@ -30,6 +30,7 @@ author = 'Matt'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    "sphinx_sitemap"
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -48,6 +49,9 @@ highlight_language = 'none'
 
 # -- Options for HTML output -------------------------------------------------
 
+html_baseurl = 'https://documatt.com/sphinx-reredirects/'
+html_extra_path = ['robots.txt']
+
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 html_logo = 'logo.png'
@@ -59,3 +63,8 @@ html_theme_options = {
     'header_logo_style': 'height: 3em',
     'footer_logo_style': 'height: 3em',
 }
+
+# --- Options for sphinx-sitemap ---------------------------------------------
+
+# No lang code in generated URLs
+sitemap_url_scheme = "{link}"
