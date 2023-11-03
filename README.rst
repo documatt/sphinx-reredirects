@@ -2,7 +2,7 @@
 sphinx-reredirects
 ##################
 
-.. image:: logo.png
+.. image:: https://raw.githubusercontent.com/documatt/sphinx-reredirects/main/logo.png
    :align: right
 
 .. image:: https://github.com/documatt/sphinx-reredirects/actions/workflows/tests.yml/badge.svg
