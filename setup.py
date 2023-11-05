@@ -11,7 +11,7 @@ setup(
     long_description=open("README.rst", encoding="utf-8").read(),
     long_description_content_type="text/x-rst",
     packages=["sphinx_reredirects"],
-    install_requires=["sphinx"],
+    install_requires=["sphinx>=7.1"],
     python_requires=">=3.5",
     setup_requires=["wheel"],
     classifiers=[

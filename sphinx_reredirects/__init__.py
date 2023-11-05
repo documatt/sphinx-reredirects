@@ -3,8 +3,10 @@ from fnmatch import fnmatch
 from pathlib import Path
 from string import Template
 from typing import Dict, Mapping, Optional, Sequence
+from urllib.parse import urlparse
 
 from sphinx.application import Sphinx
+from sphinx.builders.linkcheck import CheckExternalLinksBuilder, Hyperlink
 from sphinx.util import logging
 from sphinx.util.osutil import SEP
 
@@ -26,6 +28,7 @@ def setup(app: Sphinx) -> Dict:
     Extension setup, called by Sphinx
     """
     app.connect("html-collect-pages", init)
+    app.connect("builder-inited", collect_redirects_for_linkcheck)
     app.add_config_value(OPTION_REDIRECTS, OPTION_REDIRECTS_DEFAULT, "env")
     app.add_config_value(OPTION_TEMPLATE_FILE, OPTION_TEMPLATE_FILE_DEFAULT, "env")
     return dict(parallel_read_safe=True)
@@ -160,3 +163,22 @@ class Reredirects:
         content = Template(redirect_template).substitute({"to_uri": to_uri})
 
         return content
+
+
+def collect_redirects_for_linkcheck(app):
+    if not isinstance(app.builder, CheckExternalLinksBuilder):
+        return
+
+    rr = Reredirects(app)
+    redirects = rr.grab_redirects()
+
+    for docname, target in redirects.items():
+        if new_target := app.emit_firstresult("linkcheck-process-uri", target):
+            target = new_target
+        if urlparse(target).scheme not in ("http", "https"):
+            # Checking redirects to other pages of the same documentation is not
+            # supported for now.
+            continue
+        docpath = app.env.doc2path(docname)
+        hyperlink = Hyperlink(uri=target, docname=docname, docpath=docpath, lineno=-1)
+        app.builder.hyperlinks[target] = hyperlink
