@@ -108,3 +108,16 @@ Occasionally, you have to move complete documentation to a new home. It's easy w
    }
 
 .. tip:: To help search engines to understand the transfer, update (or set) `html_baseurl <https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-html_baseurl>`_ option to the new website, too.
+
+
+Checking your redirects
+***********************
+
+Sphinx has a linkcheck_ builder for finding broken links in your
+documentation.  This extension cooperates with it so that redirects to
+external websites will be checked too.
+
+.. _linkcheck: https://www.sphinx-doc.org/en/master/usage/builders/index.html#sphinx.builders.linkcheck.CheckExternalLinksBuilder
+
+Checking redirects to another page in the same documentation is not
+supported yet.
