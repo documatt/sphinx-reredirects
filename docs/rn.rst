@@ -1,6 +1,11 @@
 Release notes
 #############
 
+0.1.4 (2024-06-21)
+******************
+
+- fix ``EncodingWarning: 'encoding' argument not specified`` (`issue #5 <https://github.com/documatt/sphinx-reredirects/issues/5>`_ fixed by `Anderson Bravalheri <https://github.com/abravalheri>`_).
+
 0.1.3 (2023-11-03)
 ******************
 
