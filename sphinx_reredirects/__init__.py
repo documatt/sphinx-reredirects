@@ -150,14 +150,14 @@ class Reredirects:
         # create any missing parent folders
         at_path.parent.mkdir(parents=True, exist_ok=True)
 
-        at_path.write_text(content)
+        at_path.write_text(content, encoding="utf-8")
 
     def _render_redirect_template(self, to_uri: str) -> str:
         # HTML used as redirect file content
         redirect_template = REDIRECT_FILE_DEFAULT_TEMPLATE
         if self.template_file_option:
             redirect_file_abs = Path(self.app.srcdir, self.template_file_option)
-            redirect_template = redirect_file_abs.read_text()
+            redirect_template = redirect_file_abs.read_text(encoding="utf-8")
 
         content = Template(redirect_template).substitute({"to_uri": to_uri})
 
