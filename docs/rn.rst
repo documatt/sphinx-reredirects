@@ -1,6 +1,12 @@
 Release notes
 #############
 
+0.1.5 (2024-07-12)
+******************
+
+- feature: check redirect to external URLs for invalid or non-existing addresses with standard linkcheck builder (`issue #3 <https://github.com/documatt/sphinx-reredirects/issues/3>`_ fixed by `Jean Abou Samra <https://github.com/jeanas>`_).
+- chore: requires Sphinx 7.1+
+
 0.1.4 (2024-06-21)
 ******************
 

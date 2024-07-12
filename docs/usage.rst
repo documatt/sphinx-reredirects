@@ -119,5 +119,20 @@ external websites will be checked too.
 
 .. _linkcheck: https://www.sphinx-doc.org/en/master/usage/builders/index.html#sphinx.builders.linkcheck.CheckExternalLinksBuilder
 
-Checking redirects to another page in the same documentation is not
-supported yet.
+.. NOTE:: Checking redirects to another page in the same documentation is not supported yet.
+
+Invoke link checker as usual:
+
+.. code-block:: none
+
+    sphinx-build -M linkcheck source build
+
+The output will contains checked links that appear in the documents itself, but also redirects to external URLs (those with line -1):
+
+.. code-block:: none
+
+    (         install: line   -1) ok        https://documatt.com
+    (         faq/two: line   -1) broken    https://documatt.com/faq/two - 404 Client Error: Not Found for url: https://documatt.com/faq/two
+    (         faq/one: line   -1) broken    https://documatt.com/faq/one - 404 Client Error: Not Found for url: https://documatt.com/faq/one
+    (           index: line    6) ok        https://documatt.com/sphinx-reredirects
+    (           index: line    7) ok        https://github.com/documatt/sphinx-reredirects
