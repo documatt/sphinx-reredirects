@@ -23,7 +23,7 @@ def test_ext(app: Sphinx, status, warning):
     status = status.getvalue()
 
     assert (
-        (app.outdir / "faq/one.html").read_text()
+        (app.outdir / "faq/one.html").read_text(encoding="utf-8")
         == '<html><head><meta http-equiv="refresh" content="0; url=https://new.com/faq/one.html"></head></html>'
     )  # noqa: E501
 
@@ -33,7 +33,7 @@ def test_ext(app: Sphinx, status, warning):
     )
 
     assert (
-        (app.outdir / "faq/two.html").read_text()
+        (app.outdir / "faq/two.html").read_text(encoding="utf-8")
         == '<html><head><meta http-equiv="refresh" content="0; url=https://new.com/faq/two.html"></head></html>'
     )  # noqa: E501
 
@@ -43,7 +43,7 @@ def test_ext(app: Sphinx, status, warning):
     )
 
     assert (
-        (app.outdir / "install.html").read_text()
+        (app.outdir / "install.html").read_text(encoding="utf-8")
         == '<html><head><meta http-equiv="refresh" content="0; url=go-to-install"></head></html>'
     )  # noqa: E501
 
@@ -53,14 +53,14 @@ def test_ext(app: Sphinx, status, warning):
     )
 
     assert (
-        (app.outdir / "setup.html").read_text()
+        (app.outdir / "setup.html").read_text(encoding="utf-8")
         == '<html><head><meta http-equiv="refresh" content="0; url=install.html"></head></html>'
     )  # noqa: E501
 
     assert """Creating redirect 'setup.html' to 'install.html'.""" in status
 
     assert (
-        (app.outdir / "install/requirements.html").read_text()
+        (app.outdir / "install/requirements.html").read_text(encoding="utf-8")
         == '<html><head><meta http-equiv="refresh" content="0; url=https://web.com/docs/requirements.html"></head></html>'
     )  # noqa: E501
 
@@ -90,7 +90,7 @@ def test_dirhtml(app: Sphinx, status, warning):
     status = status.getvalue()
 
     assert (
-        (app.outdir / "index.html").read_text()
+        (app.outdir / "index.html").read_text(encoding="utf-8")
         == '<html><head><meta http-equiv="refresh" content="0; url=http://new.com/index"></head></html>'
     )  # noqa: E501
 
@@ -105,7 +105,7 @@ def test_dirhtml(app: Sphinx, status, warning):
     )
 
     assert (
-        (app.outdir / "install/index.html").read_text()
+        (app.outdir / "install/index.html").read_text(encoding="utf-8")
         == '<html><head><meta http-equiv="refresh" content="0; url=/installing.html"></head></html>'
     )  # noqa: E501
 
@@ -163,8 +163,10 @@ def test_linkcheck(app: Sphinx, status: StringIO, warning: StringIO):
     # strip out ANSI escape sequences
     status_str = re.sub(r"\x1B\[[0-9;]*[ABCDEFGHJKSTfmnsulh]", "", status.getvalue())
 
+    # fmt: off
     assert "(         install: line   -1) ok        https://documatt.com" in status_str
     assert "(         faq/one: line   -1) broken    https://documatt.com/faq/one - 404 Client Error: Not Found for url: https://documatt.com/faq/one" in status_str
     assert "(         faq/two: line   -1) broken    https://documatt.com/faq/two - 404 Client Error: Not Found for url: https://documatt.com/faq/two" in status_str
     assert "(           index: line    6) ok        https://documatt.com/sphinx-reredirects" in status_str
     assert "(           index: line    7) ok        https://github.com/documatt/sphinx-reredirects" in status_str
+    # fmt: on

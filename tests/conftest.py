@@ -1,5 +1,5 @@
 import pytest
-from sphinx.testing.path import path
+from pathlib import Path
 
 pytest_plugins = "sphinx.testing.fixtures"
 
@@ -9,4 +9,4 @@ collect_ignore = ["roots"]
 
 @pytest.fixture(scope="session")
 def rootdir():
-    return path(__file__).parent.abspath() / "roots"
+    return Path(__file__).parent.absolute() / "roots"
