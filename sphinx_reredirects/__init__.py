@@ -168,19 +168,23 @@ class Reredirects:
 
 
 def collect_redirects_for_linkcheck(app):
+    # Ignore when not invoked with linkcheck builder
     if not isinstance(app.builder, CheckExternalLinksBuilder):
         return
 
-    rr = Reredirects(app)
-    redirects = rr.grab_redirects()
+    redirects = Reredirects(app).grab_redirects()
 
     for docname, target in redirects.items():
+        # Give a Sphinx or extensions change to modify original target URL
         if new_target := app.emit_firstresult("linkcheck-process-uri", target):
             target = new_target
+
         if urlparse(target).scheme not in ("http", "https"):
             # Checking redirects to other pages of the same documentation is not
             # supported for now.
             continue
+
+        # Add target external URL to hyperlinks which linkcheck builder will check
         docpath = app.env.doc2path(docname)
         hyperlink = Hyperlink(uri=target, docname=docname, docpath=docpath, lineno=-1)
         app.builder.hyperlinks[target] = hyperlink

@@ -1,3 +1,5 @@
+from io import StringIO
+import re
 import pytest
 from sphinx.application import Sphinx
 from sphinx.errors import ExtensionError
@@ -152,3 +154,17 @@ def test_invalid_uri(app: Sphinx, status, warning):
             "'/index.html' does not start with" in str(excinfo.value),
         ]
     )
+
+
+@pytest.mark.sphinx("linkcheck", testroot="linkcheck", freshenv=True)
+def test_linkcheck(app: Sphinx, status: StringIO, warning: StringIO):
+    app.build()
+
+    # strip out ANSI escape sequences
+    status_str = re.sub(r"\x1B\[[0-9;]*[ABCDEFGHJKSTfmnsulh]", "", status.getvalue())
+
+    assert "(         install: line   -1) ok        https://documatt.com" in status_str
+    assert "(         faq/one: line   -1) broken    https://documatt.com/faq/one - 404 Client Error: Not Found for url: https://documatt.com/faq/one" in status_str
+    assert "(         faq/two: line   -1) broken    https://documatt.com/faq/two - 404 Client Error: Not Found for url: https://documatt.com/faq/two" in status_str
+    assert "(           index: line    6) ok        https://documatt.com/sphinx-reredirects" in status_str
+    assert "(           index: line    7) ok        https://github.com/documatt/sphinx-reredirects" in status_str
