@@ -11,7 +11,7 @@ Client-side redirects with meta refresh are okay for search engines, even the mo
 I know better how to write HTML redirect file
 *********************************************
 
-By default, created HTML redirect files contains ``<html><head><meta http-equiv="refresh" content="0; url=${to_uri}"></head></html>``.
+By default, created HTML redirect files contains ``<html><head><noscript><meta http-equiv="refresh" content="0; url=${to_uri}" /></noscript><script>var target = "${to_uri}";if (window.location.hash) {window.location.replace(target + window.location.hash);} else {window.location.replace(target);}</script></head></html>``.
 
 If you want JavaScript redirection instead, wait longer, or whatever, set ``redirect_html_template`` option. This option should points to file inside source dir (directory containing ``conf.py``). For example::
 
