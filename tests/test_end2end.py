@@ -1,8 +1,16 @@
-from io import StringIO
 import re
+from io import StringIO
+from string import Template
+
 import pytest
 from sphinx.application import Sphinx
 from sphinx.errors import ExtensionError
+
+from sphinx_reredirects import REDIRECT_FILE_DEFAULT_TEMPLATE
+
+
+def _build_redirect_html(to_uri: str) -> str:
+    return Template(REDIRECT_FILE_DEFAULT_TEMPLATE).substitute({"to_uri": to_uri})
 
 
 @pytest.mark.sphinx(
@@ -22,47 +30,42 @@ def test_ext(app: Sphinx, status, warning):
     app.build()
     status = status.getvalue()
 
-    assert (
-        (app.outdir / "faq/one.html").read_text(encoding="utf-8")
-        == '<html><head><meta http-equiv="refresh" content="0; url=https://new.com/faq/one.html"></head></html>'
-    )  # noqa: E501
+    assert (app.outdir / "faq/one.html").read_text(
+        encoding="utf-8"
+    ) == _build_redirect_html("https://new.com/faq/one.html")  # noqa: E501
 
     assert (
         """Overwriting 'faq/one.html' with redirect to 'https://new.com/faq/one.html'."""  # noqa: E501
         in status
     )
 
-    assert (
-        (app.outdir / "faq/two.html").read_text(encoding="utf-8")
-        == '<html><head><meta http-equiv="refresh" content="0; url=https://new.com/faq/two.html"></head></html>'
-    )  # noqa: E501
+    assert (app.outdir / "faq/two.html").read_text(
+        encoding="utf-8"
+    ) == _build_redirect_html("https://new.com/faq/two.html")  # noqa: E501
 
     assert (
         """Overwriting 'faq/two.html' with redirect to 'https://new.com/faq/two.html'."""  # noqa: E501
         in status
     )
 
-    assert (
-        (app.outdir / "install.html").read_text(encoding="utf-8")
-        == '<html><head><meta http-equiv="refresh" content="0; url=go-to-install"></head></html>'
-    )  # noqa: E501
+    assert (app.outdir / "install.html").read_text(
+        encoding="utf-8"
+    ) == _build_redirect_html("go-to-install")  # noqa: E501
 
     assert (
         """Overwriting 'install.html' with redirect to 'go-to-install'."""  # noqa: E501
         in status
     )
 
-    assert (
-        (app.outdir / "setup.html").read_text(encoding="utf-8")
-        == '<html><head><meta http-equiv="refresh" content="0; url=install.html"></head></html>'
-    )  # noqa: E501
+    assert (app.outdir / "setup.html").read_text(
+        encoding="utf-8"
+    ) == _build_redirect_html("install.html")  # noqa: E501
 
     assert """Creating redirect 'setup.html' to 'install.html'.""" in status
 
-    assert (
-        (app.outdir / "install/requirements.html").read_text(encoding="utf-8")
-        == '<html><head><meta http-equiv="refresh" content="0; url=https://web.com/docs/requirements.html"></head></html>'
-    )  # noqa: E501
+    assert (app.outdir / "install/requirements.html").read_text(
+        encoding="utf-8"
+    ) == _build_redirect_html("https://web.com/docs/requirements.html")  # noqa: E501
 
     assert (
         """Creating redirect 'install/requirements.html' to 'https://web.com/docs/requirements.html'."""  # noqa: E501
@@ -89,10 +92,9 @@ def test_dirhtml(app: Sphinx, status, warning):
     app.build()
     status = status.getvalue()
 
-    assert (
-        (app.outdir / "index.html").read_text(encoding="utf-8")
-        == '<html><head><meta http-equiv="refresh" content="0; url=http://new.com/index"></head></html>'
-    )  # noqa: E501
+    assert (app.outdir / "index.html").read_text(
+        encoding="utf-8"
+    ) == _build_redirect_html("http://new.com/index")  # noqa: E501
 
     assert (
         """Overwriting 'index.html' with redirect to '/newindex/'."""  # noqa: E501
@@ -104,10 +106,9 @@ def test_dirhtml(app: Sphinx, status, warning):
         in status
     )
 
-    assert (
-        (app.outdir / "install/index.html").read_text(encoding="utf-8")
-        == '<html><head><meta http-equiv="refresh" content="0; url=/installing.html"></head></html>'
-    )  # noqa: E501
+    assert (app.outdir / "install/index.html").read_text(
+        encoding="utf-8"
+    ) == _build_redirect_html("/installing.html")  # noqa: E501
 
     assert (
         """Creating redirect 'install/index.html' to '/installing/trailingslash'."""  # noqa: E501
