@@ -5,11 +5,12 @@
 # sphinx-reredirects
 
 <!-- Major intro -->
+
 **The sphinx-reredirects is the extension for Sphinx documentation projects that handle redirects for moved pages. It generates HTML pages with meta refresh redirects to the new page location to prevent 404 errors if you rename or move your documents.**
 
 <!-- Minor intro -->
 
-The sphinx-reredirects started from the urge to manage redirects for all documents after moving our *Tech writer at work* blog to the new address at https://documatt.com/blog/.
+The sphinx-reredirects started from the urge to manage redirects for all documents after moving our _Tech writer at work_ blog to the new address at https://documatt.com/blog/.
 
 <!-- Highlights in points -->
 <p>
@@ -43,9 +44,11 @@ The sphinx-reredirects started from the urge to manage redirects for all documen
 [![PyPI version](https://img.shields.io/pypi/v/sphinx-reredirects?labelColor=097cba&color=163B36)](https://pypi.org/project/sphinx-reredirects/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/sphinx-reredirects?labelColor=097cba&color=163B36)](https://pypi.org/project/sphinx-reredirects/)
 [![MIT licence](https://img.shields.io/badge/license-MIT-blue?labelColor=097cba&color=163B36)](https://raw.githubusercontent.com/documatt/sphinx-reredirects/refs/heads/main/LICENSE)
+
 </div>
 
 <!-- Very short intro -->
+
 Good URLs are never changing URLs. But if you must, sphinx-reredirects helps you manage redirects with ease and from a single place in the project's `conf.py`.
 
 For example, if you rename document `start` to `intro`, and tell it to sphinx-reredirects, it will generate the HTML page `start.html` with `<meta http-equiv="refresh" content="0; url=intro.html">`.
