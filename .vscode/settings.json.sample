@@ -1,0 +1,23 @@
+{
+  // Format on save
+  "editor.formatOnSave": true,
+
+  // Format and lint Python with Ruff
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.codeActionsOnSave": {
+      // Fix all issues on save
+      "source.fixAll": "explicit",
+      // Organize imports on save
+      "source.organizeImports": "explicit"
+    }
+  },
+
+  // Format everything else with Prettier
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // Pytest support
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestArgs": ["-vv", "--color=yes", "tests"]
+}
