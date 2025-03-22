@@ -1,7 +1,7 @@
 Release notes
 #############
 
-0.1.6 (2025-03-18)
+0.1.6 (2025-03-22)
 ******************
 
 - feature: preserve URL fragments in redirects (the ``#foo`` in ``https://example.com/docs#foo``) (`issue #11 <https://github.com/documatt/sphinx-reredirects/issues/11>`_ by `David Ekete <https://github.com/davidekete>`_).
