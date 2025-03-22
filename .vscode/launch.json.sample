@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "sphinx-build",
+            "type": "debugpy",
+            "request": "launch",
+            "program": ".venv/bin/sphinx-build",
+            "args": ["-M", "linkcheck", "tests/roots/test-linkcheck", "tests/roots/test-linkcheck/_build"],
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {
+                "PYTHONWARNDEFAULTENCODING": "1"
+            }
+        }
+    ]
+}

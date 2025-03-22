@@ -16,9 +16,7 @@ OPTION_REDIRECTS_DEFAULT: Dict[str, str] = {}
 OPTION_TEMPLATE_FILE = "redirect_html_template_file"
 OPTION_TEMPLATE_FILE_DEFAULT = None
 
-REDIRECT_FILE_DEFAULT_TEMPLATE = (
-    '<html><head><noscript><meta http-equiv="refresh" content="0; url=${to_uri}" /></noscript><script>var target = "${to_uri}";if (window.location.hash) {window.location.replace(target + window.location.hash);} else {window.location.replace(target);}</script></head></html>'  # noqa: E501
-)
+REDIRECT_FILE_DEFAULT_TEMPLATE = '<html><head><noscript><meta http-equiv="refresh" content="0; url=${to_uri}" /></noscript><script>var target = "${to_uri}";if (window.location.hash) {window.location.replace(target + window.location.hash);} else {window.location.replace(target);}</script></head></html>'  # noqa: E501
 
 logger = logging.getLogger(__name__)
 

@@ -11,9 +11,9 @@ Client-side redirects with meta refresh are okay for search engines, even the mo
 I know better how to write HTML redirect file
 *********************************************
 
-By default, created HTML redirect files contains ``<html><head><noscript><meta http-equiv="refresh" content="0; url=${to_uri}" /></noscript><script>var target = "${to_uri}";if (window.location.hash) {window.location.replace(target + window.location.hash);} else {window.location.replace(target);}</script></head></html>``.
+By default, created HTML redirect files contains ``<html><head><noscript><meta http-equiv="refresh" content="0; url=${to_uri}" /></noscript><script>var target = "${to_uri}";if (window.location.hash) {window.location.replace(target + window.location.hash);} else {window.location.replace(target);}</script></head></html>``. A little bit of JavaScript is used to handle hash part of the URI (the ``#foo`` in ``https://example.com/docs#foo``).
 
-If you want JavaScript redirection instead, wait longer, or whatever, set ``redirect_html_template`` option. This option should points to file inside source dir (directory containing ``conf.py``). For example::
+If you want to change this behavior, you can create your own HTML template. Just set ``redirect_html_template`` option in your ``conf.py`` to point to your template file. The template file should be located in the source directory (the directory containing ``conf.py``). For example::
 
     redirect_html_template_file = "redirect.html.template"
 

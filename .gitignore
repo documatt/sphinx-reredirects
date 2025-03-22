@@ -9,9 +9,17 @@ build
 _build
 build
 _site
+.mypy_cache
+.pytest_cache
+.ruff_cache
+
+# Node
+node_modules/
 
 # IDEs
-.vscode/
+.vscode/*
+!.vscode/*.sample
+!.vscode/extensions.json
 
 # Sphinx
 .doctrees

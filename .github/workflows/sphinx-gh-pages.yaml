@@ -31,8 +31,8 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
-          cache: 'pip'
+          python-version: "3.11"
+          cache: "pip"
       - name: Install tox
         run: pip install tox
       - name: Build with Sphinx
@@ -40,12 +40,12 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2.0.0
         # with:
-          # Artifact name
-          # name: # optional, default is github-pages
-          # Path of the directory containing the static assets.
-          # path: # default is _site/
-          # Duration after which artifact will expire in days.
-          # retention-days: # optional, default is 1
+        # Artifact name
+        # name: # optional, default is github-pages
+        # Path of the directory containing the static assets.
+        # path: # default is _site/
+        # Duration after which artifact will expire in days.
+        # retention-days: # optional, default is 1
 
   # Deployment job
   deploy:
