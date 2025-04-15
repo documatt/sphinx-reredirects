@@ -133,6 +133,15 @@ sitemap_locales = [None]
 sitemap_url_scheme = "{lang}{link}"
 
 sitemap_excludes = [
-    "search.html",
-    "genindex.html",
+    "search/",
+    "genindex/",
 ]
+
+# -- Options for reredirects ------------------------------------------------
+# https://documatt.com/sphinx-reredirects/
+redirects = {
+    "install.html": "https://documatt.com/sphinx-reredirects/install/",
+    "usage.html": "https://documatt.com/sphinx-reredirects/usage/",
+    "faq.html": "https://documatt.com/sphinx-reredirects/faq/",
+    "rn.html": "https://documatt.com/sphinx-reredirects/changelog/",
+}
