@@ -1,6 +1,11 @@
 Usage
 #####
 
+This document explains how to use the |project| extension to manage redirects in your Sphinx documentation. The extension provides flexible options for defining redirects, including support for wildcards and placeholders.
+
+Introduction
+************
+
 The extension relies on the ``redirects`` configuration option in ``conf.py``. ``redirects`` option maps a *source* to a *target*.
 
 .. highlight:: python3

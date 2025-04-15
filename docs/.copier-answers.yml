@@ -1,0 +1,16 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: v0.2.0-21-g21a61fd
+_src_path: gh:documatt/sphinx-doc-template
+default_builder: dirhtml
+default_language: en
+flat: true
+html_baseurl: https://documatt.com/sphinx-reredirects
+html_theme: alabaster
+license: MIT
+other_builders: []
+other_languages: []
+project_author: Documatt.com, s.r.o. and contributors
+project_name: sphinx-reredirects
+project_slug: sphinx-reredirects
+project_version: 0.1.0
+year: 2025

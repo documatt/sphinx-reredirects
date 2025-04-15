@@ -1,12 +1,12 @@
 <div align="center">
 
-[![sphinx-reredirects](https://github.com/documatt/sphinx-reredirects/blob/main/hero.png?raw=true)](https://documatt.com/sphinx-reredirects)
+[![sphinx-reredirects](https://github.com/documatt/sphinx-reredirects/blob/main/docs/_static/hero.svg?raw=true)](https://documatt.com/sphinx-reredirects)
 
 # sphinx-reredirects
 
 <!-- Major intro -->
 
-**The sphinx-reredirects is the extension for Sphinx documentation projects that handle redirects for moved pages. It generates HTML pages with meta refresh redirects to the new page location to prevent 404 errors if you rename or move your documents.**
+**The extension for Sphinx documentation projects that handle redirects for moved pages. It generates HTML pages with meta refresh redirects to the new page location to prevent 404 errors if you rename or move your documents.**
 
 <!-- Minor intro -->
 
@@ -57,7 +57,7 @@ The extension supports wildcards and moving to different domains, too.
 
 <!-- Screenshot / video -->
 <div align="center">
-  <img alt="" width="80%" src="https://github.com/documatt/sphinx-reredirects/blob/main/screenshot.png?raw=true">
+  <img alt="" width="80%" src="https://github.com/documatt/sphinx-reredirects/blob/main/docs/_static/screenshot.png?raw=true">
 </div>
 
 ## Community
@@ -77,6 +77,6 @@ Join our community here:
 
 ## Legal
 
-sphinx-reredirects [MIT licensed](https://raw.githubusercontent.com/documatt/sphinx-reredirects/refs/heads/main/LICENSE).
+sphinx-reredirects is [MIT licensed](https://raw.githubusercontent.com/documatt/sphinx-reredirects/refs/heads/main/LICENSE).
 
 Icon "route-alt-right" by [TabletIcons](https://tablericons.com/icon/route-alt-right).
