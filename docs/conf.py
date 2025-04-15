@@ -130,7 +130,7 @@ mermaid_version = "11.0.1"
 sitemap_locales = [None]
 
 # Default is {lang}{version}{link}, but version is not used in URLs in this project
-sitemap_url_scheme = "{lang}{link}"
+sitemap_url_scheme = "{link}"
 
 sitemap_excludes = [
     "search/",
