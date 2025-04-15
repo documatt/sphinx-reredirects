@@ -7,5 +7,5 @@
 install
 usage
 faq
-rn
+changelog
 :::
