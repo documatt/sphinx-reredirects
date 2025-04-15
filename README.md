@@ -1,6 +1,6 @@
 <div align="center">
 
-[![sphinx-reredirects](https://github.com/documatt/sphinx-reredirects/blob/main/docs/_static/hero.svg?raw=true)](https://documatt.com/sphinx-reredirects)
+![](https://github.com/documatt/sphinx-reredirects/blob/main/docs/_static/hero.svg?raw=true)
 
 # sphinx-reredirects
 
@@ -32,7 +32,10 @@ The sphinx-reredirects started from the urge to manage redirects for all documen
   <br />
   <em>
     <a href="https://documatt.com/sphinx-reredirects">
-      📚Documentation
+      📚 Documentation
+    </a> · 
+    <a href="https://github.com/documatt/sphinx-reredirects">
+      💻 Sources
     </a>
   </em>
 </p>
@@ -51,7 +54,7 @@ The sphinx-reredirects started from the urge to manage redirects for all documen
 
 Good URLs are never changing URLs. But if you must, sphinx-reredirects helps you manage redirects with ease and from a single place in the project's `conf.py`.
 
-For example, if you rename document `start` to `intro`, and tell it to sphinx-reredirects, it will generate the HTML page `start.html` with `<meta http-equiv="refresh" content="0; url=intro.html">`.
+For example, if you rename document `start` to `intro`, and tell it to sphinx-reredirects, it will generate the HTML page `start.html` with client-side redirect (requires no server-side configuration).
 
 The extension supports wildcards and moving to different domains, too.
 
