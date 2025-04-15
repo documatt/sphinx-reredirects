@@ -1,13 +1,15 @@
 Install and setup
 #################
 
-Perform::
+This page will help you install and set up the |project| extension for Sphinx.
 
-    pip3 install sphinx-reredirects
+1. Perform::
 
-Then, open your ``conf.py`` and append ``sphinx_reredirects`` to the ``extensions`` list::
+        pip3 install sphinx-reredirects
 
-    extensions = [
-        ...
-        'sphinx_reredirects'
-    ]
+2. Then, open your ``conf.py`` and append ``sphinx_reredirects`` to the ``extensions`` list::
+
+        extensions = [
+            ...
+            'sphinx_reredirects'
+        ]

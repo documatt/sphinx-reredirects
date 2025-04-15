@@ -1,0 +1,26 @@
+# Python
+.venv
+venv/
+.nox
+__pycache__
+*.py[oc]
+*.egg-info/
+.pytest_cache/
+dist/
+wheels/
+
+# Sphinx
+build
+_build
+*.mo
+
+# Node
+node_modules
+
+# OS
+.DS_Store
+
+# editors
+.idea/
+!.vscode/*.sample
+.vscode/*
