@@ -18,30 +18,31 @@ The extension relies on the ``redirects`` configuration option in ``conf.py``. `
 
 By default, ``redirects`` is empty (i.e. generates no redirect files).
 
-*Source* (the key in ``redirects`` map) is a *docname*, i.e. document path without a suffix (an extension). Most Sphinx projects use ``.rst`` as extension. For example, a docname for the file ``index.rst`` is ``index``, for ``agents/intro.rst`` is ``agents/intro``, etc.
+*Source* (the key in the ``redirects`` map) is a *docname*, i.e. a document path without a suffix (an extension). Most Sphinx projects use ``.rst`` as extension. For example, a docname for the file ``index.rst`` is ``index``, for ``agents/intro.rst`` is ``agents/intro``, etc.
 
-Source may be non-existing document or existing document. If source does not exist, |project| creates new redirect .html file. For existing document, document's .html file will be overwritten with redirect file. To select multiple existing documents, a `source wildcards <Wildcard syntax_>`_ can be used.
+Source may be a non-existent document or existing document. If Source does not exist, |project| creates a new redirect .html file. For an existing document, the document's .html file will be overwritten with the redirect file. To select multiple existing documents, a `source wildcard <Wildcard syntax_>`_ can be used.
 
-*Target* (the value in ``redirects`` map) is an URL that will be used in the HTML redirecting file. It may be specified using the placeholder to reuse source docname (see `Target placeholders`_).
+*Target* (the value in the ``redirects`` map) is a URL that will be used in the HTML redirecting file. It may be specified using the placeholder to reuse the source docname (see `Target placeholders`_).
 
-Target value must correspond to the output file naming of chosen Sphinx builder. For example, html builder creates ``docname.html``, while dirhtml ``docname/index.html``.
+Target must correspond to the output file naming of the chosen Sphinx builder. For example, the html builder creates ``docname.html``, while dirhtml creates ``docname/index.html``.
 
 .. important:: The extension works only for HTML-based builders like html and dirhtml. When building to other outputs (linkcheck, latex), it does nothing.
 
-The redirect is relative to the current page. So, if you want to redirect ``guides/index.html`` to ``index.html`` use:
+The redirect is may be relative to the current page, or it may be absolute, in which case it takes the project root as the root of the path. For example, if you want to redirect ``guides/index.html`` to ``index.html``, you can use both options shown below:
 
 .. highlight:: python3
 
 ::
 
    redirects = {
-        "guides/index": "../index.html"
+        "guides/index": "../index.html"  # relative
+        "guides/index": "/index.html"    # absolute
    }
 
 Redirect old documents
 **********************
 
-The basic usage is to redirect document you delete or rename to a new file within the same project. For example, if you rename ``setup.rst`` to ``install.rst``::
+The basic usage is to redirect a document you delete or rename to a new file within the same project. For example, if you rename ``setup.rst`` to ``install.rst``::
 
     redirects = {
         "setup": "install.html",
@@ -57,13 +58,13 @@ Or, if you output to dirhtml, target must be a folder::
 
 .. rubric:: Absolute URLs
 
-The target maybe any value. For example, if particular page is now on the different website::
+The target may also be an external URL. For example, if a particular page is now on a different website::
 
     redirects = {
         "install/requirements": "https://anotherwebsite.com/docs/requirements.html",
     }
 
-It will create ``install`` folder (if it does not exist) and ``requirements.html`` containing ``<meta http-equiv="refresh" content="0; url=https://anotherwebsite.com/docs/requirements.html">``.
+It will create an ``install`` folder (if it does not exist) and ``requirements.html`` containing ``<meta http-equiv="refresh" content="0; url=https://anotherwebsite.com/docs/requirements.html">``.
 
 Redirect existing documents
 ***************************
