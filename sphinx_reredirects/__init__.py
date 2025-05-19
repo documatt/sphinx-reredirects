@@ -51,6 +51,8 @@ def init(app: Sphinx) -> Optional[Sequence]:
 class Reredirects:
     def __init__(self, app: Sphinx) -> None:
         self.app = app
+        self.project_root = app.srcdir
+        print(f"My magic string {self.project_root}")
         self.redirects_option: Dict[str, str] = getattr(app.config, OPTION_REDIRECTS)
         self.template_file_option: str = getattr(app.config, OPTION_TEMPLATE_FILE)
 
@@ -62,6 +64,9 @@ class Reredirects:
 
         # For each source-target redirect pair in conf.py
         for source, target in self.redirects_option.items():
+            # relativize target path
+            target = self._to_relative_path(source, target)
+
             # no wildcard, append source as-is
             if not self._contains_wildcard(source):
                 to_be_redirected[source] = target
@@ -132,6 +137,20 @@ class Reredirects:
                 logger.info(f"Creating redirect '{redirect_file_rel}' to '{target}'.")
 
             self._create_redirect_file(redirect_file_abs, target)
+
+    @staticmethod
+    def _to_relative_path(source: str, target: str) -> str:
+        """Convert any path (relative or absolute) to a relative path"""
+        if not target.startswith(SEP):
+            # Already a relative path
+            return target
+
+        # Prepend target with ".." for each level of nesting in source.
+        print(f"Detecting absolute path: {target} from {source}")
+        nesting_level = source.count(SEP)
+        result = SEP.join([".."] * nesting_level) + target
+        print(f"Relative path: {result}")
+        return result
 
     @staticmethod
     def _contains_wildcard(text: str) -> bool:
