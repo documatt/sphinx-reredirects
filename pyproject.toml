@@ -1,3 +1,36 @@
-[build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+[project]
+name = "sphinx-reredirects"
+version = "0.1.6"
+description = "Handles redirects for moved pages in Sphinx documentation projects"
+readme = "README.md"
+license = "MIT"
+maintainers = [
+  {name = "Libor Jelínek", email = "liborjelinek@documatt.com"}
+]
+requires-python = ">=3.11"
+dependencies = [
+    "sphinx>=7,<9.0"
+]
+classifiers = [
+    "Framework :: Sphinx :: Extension",
+    "Framework :: Sphinx",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Topic :: Documentation",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Documentation :: Sphinx",
+    "Topic :: Utilities",
+]
+
+[project.urls]
+Homepage = "https://documatt.com/sphinx-reredirects/"
+Repository = "https://github.com/documatt/sphinx-reredirects"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "tox>=4.26.0",
+]
