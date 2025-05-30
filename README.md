@@ -1,6 +1,6 @@
 <div align="center">
 
-![](https://github.com/documatt/sphinx-reredirects/blob/main/docs/_static/hero.svg?raw=true)
+![Project hero image](https://github.com/documatt/sphinx-reredirects/blob/main/docs/_static/hero.svg?raw=true)
 
 # sphinx-reredirects
 
@@ -13,32 +13,11 @@
 The sphinx-reredirects started from the urge to manage redirects for all documents after moving our _Tech writer at work_ blog to the new address at https://documatt.com/blog/.
 
 <!-- Highlights in points -->
-<p>
-  <em>
-    Prevents 404 errors
-    · Wildcard matching
-    · Dynamic placeholders
-  </em>
-  <br />
-  <em>
-    Cross-domain redirects
-    · Centralized configuration in <code>conf.py</code>
-  </em>
-  <br />
-  <em>
-    Easy to use
-    · Works seamlessly with Sphinx
-  </em>
-  <br />
-  <em>
-    <a href="https://documatt.com/sphinx-reredirects">
-      📚 Documentation
-    </a> · 
-    <a href="https://github.com/documatt/sphinx-reredirects">
-      💻 Sources
-    </a>
-  </em>
-</p>
+
+_Prevents 404 errors · Wildcard matching · Dynamic placeholders_\
+_Cross-domain redirects · Centralized configuration in `conf.py`_\
+_Easy to use · Works seamlessly with Sphinx_\
+_[📚 Documentation](https://documatt.com/sphinx-reredirects) · [📟 Source code](https://github.com/documatt/sphinx-reredirects)_
 
 <!-- Badges -->
 
@@ -59,9 +38,8 @@ For example, if you rename document `start` to `intro`, and tell it to sphinx-re
 The extension supports wildcards and moving to different domains, too.
 
 <!-- Screenshot / video -->
-<div align="center">
-  <img alt="" width="80%" src="https://github.com/documatt/sphinx-reredirects/blob/main/docs/_static/screenshot.png?raw=true">
-</div>
+
+![Terminal showing `cat images.html` ( content of generated redirect HTML file)](https://github.com/documatt/sphinx-reredirects/blob/main/docs/_static/screenshot.png?raw=true)
 
 ## Community
 
