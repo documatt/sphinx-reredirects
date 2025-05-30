@@ -26,6 +26,7 @@ _[📚 Documentation](https://documatt.com/sphinx-reredirects) · [📟 Source c
 [![PyPI version](https://img.shields.io/pypi/v/sphinx-reredirects?labelColor=097cba&color=163B36)](https://pypi.org/project/sphinx-reredirects/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/sphinx-reredirects?labelColor=097cba&color=163B36)](https://pypi.org/project/sphinx-reredirects/)
 [![MIT licence](https://img.shields.io/badge/license-MIT-blue?labelColor=097cba&color=163B36)](https://raw.githubusercontent.com/documatt/sphinx-reredirects/refs/heads/main/LICENSE)
+[![Nox](https://img.shields.io/badge/%F0%9F%A6%8A-Nox-D85E00.svg)](https://github.com/wntrblm/nox)
 
 </div>
 

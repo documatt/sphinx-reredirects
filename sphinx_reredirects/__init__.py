@@ -1,3 +1,7 @@
+"""The extension for Sphinx documentation projects that handle redirects for moved pages. It generates HTML pages with meta refresh redirects to the new page location to prevent 404 errors if you rename or move your documents."""
+
+__version__ = "0.1.6"
+
 import re
 from fnmatch import fnmatch
 from pathlib import Path
