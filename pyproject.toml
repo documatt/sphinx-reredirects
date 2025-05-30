@@ -1,7 +1,6 @@
 [project]
 name = "sphinx-reredirects"
-version = "0.1.6"
-description = "Handles redirects for moved pages in Sphinx documentation projects"
+dynamic = ["version", "description"]
 readme = "README.md"
 license = "MIT"
 maintainers = [
@@ -9,14 +8,15 @@ maintainers = [
 ]
 requires-python = ">=3.11"
 dependencies = [
-    "sphinx>=7,<9.0"
+    "sphinx>=7.4,<9.0"
 ]
 classifiers = [
     "Framework :: Sphinx :: Extension",
     "Framework :: Sphinx",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.11",
-    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Operating System :: OS Independent",
     "Intended Audience :: Developers",
     "Topic :: Documentation",
@@ -26,11 +26,19 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://documatt.com/sphinx-reredirects/"
-Repository = "https://github.com/documatt/sphinx-reredirects"
+homepage = "https://documatt.com/sphinx-reredirects/"
+repository = "https://github.com/documatt/sphinx-reredirects"
 
 [dependency-groups]
 dev = [
+    "flit>=3.12.0",
+    "mypy>=1.16.0",
+    "nox>=2025.5.1",
     "pytest>=8.3.5",
-    "tox>=4.26.0",
+    "ruff>=0.11.12",
+    "twine>=6.1.0",
 ]
+
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
