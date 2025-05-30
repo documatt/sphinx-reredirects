@@ -1,6 +1,16 @@
 Changelog
 #########
 
+Unreleased
+**********
+
+A maintenance release with no new features, but with some code and legal clean-up.
+
+- drop Python < 3.11 support
+- drop Sphinx < 7.0 support
+- change license from BSD3 to MIT
+- migrate from pip to uv
+
 0.1.6 (2025-03-22)
 ******************
 
