@@ -13,7 +13,7 @@
     "format:check": "prettier --check .",
     "commitlint": "commitlint --edit",
     "lint-staged": "lint-staged",
-    "test": "uv run nox -s test",
+    "test": "uv run nox -t test",
     "changelog": "npx git-cliff -o CHANGELOG.md"
   },
   "lint-staged": {

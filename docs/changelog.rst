@@ -4,7 +4,7 @@ Changelog
 Unreleased
 **********
 
-A maintenance release with no new features, but with important code clean-up, dependencies update and modernization.
+A maintenance release with no new features, but with important code clean-up, dependency update, and modernization.
 
 - require Python >= 3.11
 - require Sphinx >= 7.4
