@@ -1,8 +1,8 @@
 Changelog
 #########
 
-Unreleased
-**********
+1.0.0 (2025-05-31)
+******************
 
 A maintenance release with no new features, but with important code clean-up, dependency update, and modernization.
 
