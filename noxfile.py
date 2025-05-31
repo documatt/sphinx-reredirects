@@ -15,7 +15,7 @@ nox.options.default_venv_backend = "uv"
 
 SUPPORTED_PYTHONS = ["3.11", "3.12", "3.13"]
 SUPPORTED_SPHINX_VERSIONS = [
-    # ~= is "compatible opetator" allowing for patch version updates
+    # ~= is "compatible operator" allowing for patch version updates
     "~=7.4.0",
     "~=8.0.0",
     "~=8.1.0",
