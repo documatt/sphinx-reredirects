@@ -4,13 +4,14 @@ Changelog
 Unreleased
 **********
 
-A maintenance release with no new features, but with some code and legal clean-up.
+A maintenance release with no new features, but with important code clean-up, dependencies update and modernization.
 
-- minimal Python >= 3.11
-- minimal Sphinx >= 7.4
+- require Python >= 3.11
+- require Sphinx >= 7.4
 - change license from BSD3 to MIT
 - migrate from pip to uv
 - migrate from tox to nox
+- migrate from Build/Twine to Flit
 
 0.1.6 (2025-03-22)
 ******************

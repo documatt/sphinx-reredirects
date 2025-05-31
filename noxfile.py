@@ -45,7 +45,7 @@ def install_dependencies(session: nox.Session, *args, **kwargs) -> None:
 # To invoke session(s), use "nox -s <name1>" or "nox -s <name1> <name2>"
 
 
-@nox.session(python=SUPPORTED_PYTHONS)
+@nox.session(python=SUPPORTED_PYTHONS, tags=["test"])
 @nox.parametrize("sphinx", SUPPORTED_SPHINX_VERSIONS)
 def test(session, sphinx):
     """Run tests with different Python and Sphinx versions."""
@@ -56,23 +56,45 @@ def test(session, sphinx):
     session.run("pytest")
 
 
-@nox.session(python=SUPPORTED_PYTHONS[-1:])  # Use the last Python version
+@nox.session(tags=["lint"])
 def mypy(session: nox.Session) -> None:
     """Run mypy."""
     install_dependencies(session)
     session.run("mypy", "sphinx_reredirects")
 
 
-@nox.session(python=SUPPORTED_PYTHONS[-1:])  # Use the last Python version
+@nox.session(tags=["lint"])
 def ruff_check(session: nox.Session) -> None:
     """Run Ruff check."""
-    install_dependencies(session)
+    install_dependencies(session, "--only-dev")
     session.run("ruff", "check")
 
 
-@nox.session(python=SUPPORTED_PYTHONS[-1:])  # Use the last Python version
-def build(session: nox.Session) -> None:
-    """Build the package."""
-    install_dependencies(session)
-    session.run("rm", "-rf", "dist", external=True)
-    session.run("flit", "build")
+@nox.session()
+def publish_to_test_pypi(session: nox.Session) -> None:
+    """Build and publish the package to test PyPI. You will be asked for token. See `docs/releasing.md` for full instructions."""
+    install_dependencies(session, "--only-dev")
+
+    session.run(
+        "flit",
+        "publish",
+        env={
+            "FLIT_INDEX_URL": "https://test.pypi.org/legacy/",
+            "FLIT_USERNAME": "__token__",
+        },
+    )
+
+
+@nox.session()
+def publish_to_real_pypi(session: nox.Session) -> None:
+    """Build and publish the package to real PyPI. You will be asked for token. See `docs/releasing.md` for full instructions."""
+    install_dependencies(session, "--only-dev")
+
+    session.run(
+        "flit",
+        "publish",
+        env={
+            "FLIT_INDEX_URL": "https://pypi.org/legacy/",
+            "FLIT_USERNAME": "__token__",
+        },
+    )

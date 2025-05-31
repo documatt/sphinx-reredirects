@@ -19,4 +19,4 @@ jobs:
       - name: Set up Python
         run: uv python install
       - name: Test and lint
-        run: uv run nox -s test mypy ruff_check
+        run: uv run nox -t test lint
