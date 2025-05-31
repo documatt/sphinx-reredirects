@@ -94,7 +94,7 @@ def publish_to_real_pypi(session: nox.Session) -> None:
         "flit",
         "publish",
         env={
-            "FLIT_INDEX_URL": "https://pypi.org/legacy/",
+            "FLIT_INDEX_URL": "https://upload.pypi.org/legacy/",
             "FLIT_USERNAME": "__token__",
         },
     )
