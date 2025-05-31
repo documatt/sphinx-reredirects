@@ -1,7 +1,5 @@
 # How to release new version
 
-## Part 1: Git release
-
 1. Choose a version value. git-cliff also calculate new version number based on Git history.
 
 1. Create branch `release/v<version>`.
@@ -12,29 +10,17 @@
 
 1. Set new version to `__version__` variable in `<package>/__init__.py`.
 
-1. Create "release commit" containing changes to `<package>/__init__.py` with message `chore: release vX.Y.Z`. Release commit may contain other changes too, like to `CHANGELOG.md` and so on.
+1. Create "release commit" containing changes to `<package>/__init__.py` with message `chore: release v<version>`. Release commit may contain other changes too, like to `CHANGELOG.md` and so on.
 
-1. Create PR for branch. Wait for tests, linters. Do a code review. Merge to main branch.
-
-1. Create tag `vX.Y.Z` on release commit.
+1. Create tag `v<version>` on release commit. E.g.,
 
    ```sh
-   git tag -a vX.Y.Z
+   git tag -a v1.0.2
    git push origin HEAD
    ```
 
-## Part 2: PyPI release
+1. Create PR for branch. Wait for tests, linters. Do a code review.
 
-1. Upload to TestPyPI.
+1. Meanwhile, the package has been published to Test PyPI: https://test.pypi.org/project/sphinx-reredirects/#history.
 
-   ```sh
-   uv run nox -s publish_to_test_pypi
-   ```
-
-   and go to https://test.pypi.org/project/sphinx-reredirects/<version>/
-
-1. If you are happy with it, upload to real PyPI.
-
-   ```sh
-   uv run nox -s publish_to_real_pypi
-   ```
+1. Merge to main branch. Any `v<version>` tag is automatically uploaded to real PyPI: https://pypi.org/project/sphinx-reredirects/#history

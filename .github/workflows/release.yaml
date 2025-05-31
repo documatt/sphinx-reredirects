@@ -1,0 +1,31 @@
+name: Release package
+
+on:
+  push:
+    tags: ["v*"]
+    branches: ["main", "release/*"]
+
+jobs:
+  publish_to_test_pypi:
+    if: startsWith(github.ref_name, 'release/')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install the uv
+        uses: astral-sh/setup-uv@v6
+      - name: Build and publish package
+        run: uv run nox -s publish_to_test_pypi
+        env:
+          FLIT_PASSWORD: ${{ secrets.TEST_PYPI_TOKEN }}
+
+  publish_to_real_pypi:
+    if: github.ref_name == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install the uv
+        uses: astral-sh/setup-uv@v6
+      - name: Build and publish package
+        run: uv run nox -s publish_to_real_pypi
+        env:
+          FLIT_PASSWORD: ${{ secrets.REAL_PYPI_TOKEN }}
