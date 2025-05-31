@@ -6,7 +6,7 @@ on:
 
 jobs:
   publish_to_test_pypi:
-    if: startsWith(github.ref_name, 'release/')
+    if: startsWith(github.ref, 'refs/heads/release/')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,7 +18,7 @@ jobs:
           FLIT_PASSWORD: ${{ secrets.TEST_PYPI_TOKEN }}
 
   publish_to_real_pypi:
-    if: github.ref_name == 'main'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
