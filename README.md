@@ -22,7 +22,7 @@ _[📚 Documentation](https://documatt.com/sphinx-reredirects) · [📟 Source c
 <!-- Badges -->
 
 [![GitHub Repo stars](https://img.shields.io/github/stars/documatt/sphinx-reredirects?style=flat&logo=github&labelColor=097cba&color=163B36)](https://github.com/documatt/sphinx-reredirects)
-[![GitHub tests](https://github.com/documatt/sphinx-reredirects/actions/workflows/tests.yml/badge.svg)](https://github.com/documatt/sphinx-reredirects/actions/workflows/tests.yml)
+[![GitHub tests](https://github.com/documatt/sphinx-reredirects/actions/workflows/test.yml/badge.svg)](https://github.com/documatt/sphinx-reredirects/actions/workflows/test.yml)
 [![PyPI version](https://img.shields.io/pypi/v/sphinx-reredirects?labelColor=097cba&color=163B36)](https://pypi.org/project/sphinx-reredirects/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/sphinx-reredirects?labelColor=097cba&color=163B36)](https://pypi.org/project/sphinx-reredirects/)
 [![MIT licence](https://img.shields.io/badge/license-MIT-blue?labelColor=097cba&color=163B36)](https://raw.githubusercontent.com/documatt/sphinx-reredirects/refs/heads/main/LICENSE)
