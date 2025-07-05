@@ -485,7 +485,6 @@ name = "sphinx-reredirects"
 source = { editable = "." }
 dependencies = [
     { name = "sphinx" },
-    { name = "sphinxext-opengraph" },
 ]
 
 [package.dev-dependencies]
@@ -498,10 +497,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [
-    { name = "sphinx", specifier = ">=7.4,<9.0" },
-    { name = "sphinxext-opengraph", specifier = ">=0.10.0" },
-]
+requires-dist = [{ name = "sphinx", specifier = ">=7.4,<9.0" }]
 
 [package.metadata.requires-dev]
 dev = [
@@ -564,18 +560,6 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/3b/44/6716b257b0aa6bfd51a1b31665d1c205fb12cb5ad56de752dfa15657de2f/sphinxcontrib_serializinghtml-2.0.0.tar.gz", hash = "sha256:e9d912827f872c029017a53f0ef2180b327c3f7fd23c87229f7a8e8b70031d4d", size = 16080, upload-time = "2024-07-29T01:10:09.332Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/52/a7/d2782e4e3f77c8450f727ba74a8f12756d5ba823d81b941f1b04da9d033a/sphinxcontrib_serializinghtml-2.0.0-py3-none-any.whl", hash = "sha256:6e2cb0eef194e10c27ec0023bfeb25badbbb5868244cf5bc5bdc04e4464bf331", size = 92072, upload-time = "2024-07-29T01:10:08.203Z" },
-]
-
-[[package]]
-name = "sphinxext-opengraph"
-version = "0.10.0"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "sphinx" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/2c/27/d8e269030e1f063494ee2b8110256de8fa05b1ef532c76e6807b5c42c8b1/sphinxext_opengraph-0.10.0.tar.gz", hash = "sha256:5781149c1dfc306c3701661acdd02c512c2e6f21d2253487bf0b39639017fc24", size = 1027562, upload-time = "2025-04-04T21:35:19.646Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/47/3f/bb8bbee4d26aa2abd46e76025697040708e1b0d37c9f198877cebf0e3ba0/sphinxext_opengraph-0.10.0-py3-none-any.whl", hash = "sha256:8afd33f96a02d9506d9dc8f284840888ca8948482ac93015a68d88493df43712", size = 1004031, upload-time = "2025-04-04T21:35:17.637Z" },
 ]
 
 [[package]]

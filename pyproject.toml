@@ -9,7 +9,6 @@ maintainers = [
 requires-python = ">=3.11"
 dependencies = [
     "sphinx>=7.4,<9.0",
-    "sphinxext-opengraph>=0.10.0",
 ]
 classifiers = [
     "Framework :: Sphinx :: Extension",
