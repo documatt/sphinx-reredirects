@@ -25,6 +25,7 @@ extensions = [
     "sphinx_reredirects",
     "sphinx_sitemap",
     "sphinx_copybutton",
+    "sphinxext.opengraph",
 ]
 
 nitpicky = True
@@ -145,3 +146,9 @@ redirects = {
     "faq.html": "https://documatt.com/sphinx-reredirects/faq/",
     "rn.html": "https://documatt.com/sphinx-reredirects/changelog/",
 }
+
+
+# --- OpenGraph options ---------------------------------------------------
+
+ogp_site_url = html_baseurl
+ogp_image = "_static/ogp_image.png"
