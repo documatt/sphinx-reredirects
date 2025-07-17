@@ -11,9 +11,8 @@ dependencies = [
     "sphinx-reredirects==0.1.5",
     "sphinx-sitemap==2.6.0",
     "sphinx-copybutton==0.5.2",
-    "sphinx-null-theme",
-    "sphinx-documattcom-theme",
     "sphinxext-opengraph>=0.10.0",
+    "sphinx-documattcom-theme",
 ]
 requires-python = ">=3.11"
 
@@ -21,5 +20,4 @@ requires-python = ">=3.11"
 dev = ["nox>=2025.2.9", "sphinx-autobuild==2024.10.3", "sphinx-intl==2.2.0"]
 
 [tool.uv.sources]
-sphinx-null-theme = { path = "vendors/sphinx_null_theme-0.1.0-py3-none-any.whl" }
-sphinx-documattcom-theme = { path = "vendors/sphinx_documattcom_theme-1.1.1-py3-none-any.whl" }
+sphinx-documattcom-theme = { git = "https://github.com/documatt/sphinx-themes-next.git", subdirectory = "documattcom" }
