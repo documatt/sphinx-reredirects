@@ -20,7 +20,7 @@ By default, ``redirects`` is empty (i.e. generates no redirect files).
 
 *Source* (the key in the ``redirects`` map) is a *docname*, i.e. a document path without a suffix (an extension). Most Sphinx projects use ``.rst`` as extension. For example, a docname for the file ``index.rst`` is ``index``, for ``agents/intro.rst`` is ``agents/intro``, etc.
 
-Source may be a non-existent document or existing document. If Source does not exist, |project| creates a new redirect .html file. For an existing document, the document's .html file will be overwritten with the redirect file. To select multiple existing documents, a `source wildcard <Wildcard syntax_>`_ can be used.
+A source may be a non-existent document or existing document. If a source does not exist, |project| creates a new redirect .html file. For an existing document, the document's .html file will be overwritten with the redirect file. To select multiple existing documents, a `source wildcard <Wildcard syntax_>`_ can be used.
 
 *Target* (the value in the ``redirects`` map) is a URL that will be used in the HTML redirecting file. It may be specified using the placeholder to reuse the source docname (see `Target placeholders`_).
 
@@ -28,7 +28,7 @@ Target must correspond to the output file naming of the chosen Sphinx builder. F
 
 .. important:: The extension works only for HTML-based builders like html and dirhtml. When building to other outputs (linkcheck, latex), it does nothing.
 
-The redirect is may be relative to the current page, or it may be absolute, in which case it takes the project root as the root of the path. For example, if you want to redirect ``guides/index.html`` to ``index.html``, you can use both options shown below:
+The target may be relative to the current page, or it may be absolute, in which case it takes the project root as the root of the path. For example, if you want to redirect ``guides/index.html`` to ``index.html``, you can use both options shown below:
 
 .. highlight:: python3
 
