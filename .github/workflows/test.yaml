@@ -3,9 +3,10 @@
 
 name: Test and lint
 
-# This workflow will run on every push or when manually triggered
+# This workflow will run on every push, PR, or when manually triggered
 on:
   push:
+  pull_request:
   workflow_dispatch:
 
 jobs:
