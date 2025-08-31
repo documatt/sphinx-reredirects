@@ -108,7 +108,7 @@ def test_dirhtml(app: Sphinx, status, warning):
 
     assert (app.outdir / "install/index.html").read_text(
         encoding="utf-8"
-    ) == _build_redirect_html("/installing.html")  # noqa: E501
+    ) == _build_redirect_html("../installing.html")  # noqa: E501
 
     assert (
         """Creating redirect 'install/index.html' to '/installing/trailingslash'."""  # noqa: E501
@@ -116,17 +116,17 @@ def test_dirhtml(app: Sphinx, status, warning):
     )
 
     assert (
-        """Overwriting 'install/index.html' with redirect to '/installing/trailingslash'."""  # noqa: E501
+        """Overwriting 'install/index.html' with redirect to '../installing/trailingslash'."""  # noqa: E501
         in status
     )
 
     assert (
-        """Overwriting 'install/index.html' with redirect to '/installing'."""  # noqa: E501
+        """Overwriting 'install/index.html' with redirect to '../installing'."""  # noqa: E501
         in status
     )
 
     assert (
-        """Overwriting 'install/index.html' with redirect to '/installing.html'."""  # noqa: E501
+        """Overwriting 'install/index.html' with redirect to '../installing.html'."""  # noqa: E501
         in status
     )
 
