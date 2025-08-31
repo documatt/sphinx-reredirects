@@ -67,7 +67,6 @@ class Reredirects:
         # For each source-target redirect pair in conf.py
         for source, target in self.redirects_option.items():
             target = self._relativize_target_path(source, target)
-            target = self._to_relative_path(source, target)
 
             # no wildcard, append source as-is
             if not self._contains_wildcard(source):
