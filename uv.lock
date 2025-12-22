@@ -497,7 +497,7 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "sphinx", specifier = ">=7.4,<9.0" }]
+requires-dist = [{ name = "sphinx", specifier = ">=7.4" }]
 
 [package.metadata.requires-dev]
 dev = [
