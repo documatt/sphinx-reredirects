@@ -54,15 +54,15 @@ wheels = [
 
 [[package]]
 name = "beautifulsoup4"
-version = "4.13.4"
+version = "4.13.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "soupsieve" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d8/e4/0c4c39e18fd76d6a628d4dd8da40543d136ce2d1752bd6eeeab0791f4d6b/beautifulsoup4-4.13.4.tar.gz", hash = "sha256:dbb3c4e1ceae6aefebdaf2423247260cd062430a410e38c66f2baa50a8437195", size = 621067, upload-time = "2025-04-15T17:05:13.836Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/f0/3c/adaf39ce1fb4afdd21b611e3d530b183bb7759c9b673d60db0e347fd4439/beautifulsoup4-4.13.3.tar.gz", hash = "sha256:1bd32405dacc920b42b83ba01644747ed77456a65760e285fbc47633ceddaf8b", size = 619516, upload-time = "2025-02-04T20:05:01.681Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/50/cd/30110dc0ffcf3b131156077b90e9f60ed75711223f306da4db08eff8403b/beautifulsoup4-4.13.4-py3-none-any.whl", hash = "sha256:9bbbb14bfde9d79f38b8cd5f8c7c85f4b8f2523190ebed90e950a8dea4cb1c4b", size = 187285, upload-time = "2025-04-15T17:05:12.221Z" },
+    { url = "https://files.pythonhosted.org/packages/f9/49/6abb616eb3cbab6a7cca303dc02fdf3836de2e0b834bf966a7f5271a34d8/beautifulsoup4-4.13.3-py3-none-any.whl", hash = "sha256:99045d7d3f08f91f0d656bc9b7efbae189426cd913d830294a15eefa0ea4df16", size = 186015, upload-time = "2025-02-04T20:05:03.729Z" },
 ]
 
 [[package]]
@@ -466,11 +466,11 @@ wheels = [
 
 [[package]]
 name = "soupsieve"
-version = "2.7"
+version = "2.8.3"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/3f/f4/4a80cd6ef364b2e8b65b15816a843c0980f7a5a2b4dc701fc574952aa19f/soupsieve-2.7.tar.gz", hash = "sha256:ad282f9b6926286d2ead4750552c8a6142bc4c783fd66b0293547c8fe6ae126a", size = 103418, upload-time = "2025-04-20T18:50:08.518Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/7b/ae/2d9c981590ed9999a0d91755b47fc74f74de286b0f5cee14c9269041e6c4/soupsieve-2.8.3.tar.gz", hash = "sha256:3267f1eeea4251fb42728b6dfb746edc9acaffc4a45b27e19450b676586e8349", size = 118627, upload-time = "2026-01-20T04:27:02.457Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e7/9c/0e6afc12c269578be5c0c1c9f4b49a8d32770a080260c333ac04cc1c832d/soupsieve-2.7-py3-none-any.whl", hash = "sha256:6e60cc5c1ffaf1cebcc12e8188320b72071e922c2e897f737cadce79ad5d30c4", size = 36677, upload-time = "2025-04-20T18:50:07.196Z" },
+    { url = "https://files.pythonhosted.org/packages/46/2c/1462b1d0a634697ae9e55b3cecdcb64788e8b7d63f54d923fcd0bb140aed/soupsieve-2.8.3-py3-none-any.whl", hash = "sha256:ed64f2ba4eebeab06cc4962affce381647455978ffc1e36bb79a545b91f45a95", size = 37016, upload-time = "2026-01-20T04:27:01.012Z" },
 ]
 
 [[package]]
@@ -518,6 +518,19 @@ wheels = [
 ]
 
 [[package]]
+name = "sphinx-clarity-theme"
+version = "1.1.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "beautifulsoup4" },
+    { name = "sphinx-null-theme" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/56/91/0572992e43d6a22cb77adb518a01410f538765b3695223e0706b0aacac86/sphinx_clarity_theme-1.1.0.tar.gz", hash = "sha256:711cc06719a7d8bfac1417e42fbbc433beda7deb7226e94e4ddf7b43aafef791", size = 265825, upload-time = "2026-02-27T19:23:00.498Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/44/8e/14d424d19d1f2fb9b47af584bb9dadf4e35a3fe43bd15644913c9464a0e3/sphinx_clarity_theme-1.1.0-py3-none-any.whl", hash = "sha256:afc9d57b55626d07913367598d174f2a979a790d098708b4bc8efe24360c685a", size = 61695, upload-time = "2026-02-27T19:22:56.02Z" },
+]
+
+[[package]]
 name = "sphinx-copybutton"
 version = "0.5.2"
 source = { registry = "https://pypi.org/simple" }
@@ -542,15 +555,6 @@ wheels = [
 ]
 
 [[package]]
-name = "sphinx-documattcom-theme"
-version = "1.1.1"
-source = { git = "https://github.com/documatt/sphinx-themes-next.git?subdirectory=documattcom#006d7faafe88210d2ee7481951428437e1e4bf21" }
-dependencies = [
-    { name = "sphinx" },
-    { name = "sphinx-null-theme" },
-]
-
-[[package]]
 name = "sphinx-intl"
 version = "2.2.0"
 source = { registry = "https://pypi.org/simple" }
@@ -567,11 +571,15 @@ wheels = [
 
 [[package]]
 name = "sphinx-null-theme"
-version = "0.1.0"
-source = { git = "https://github.com/documatt/sphinx-themes-next.git?subdirectory=null#006d7faafe88210d2ee7481951428437e1e4bf21" }
+version = "1.0.0"
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "beautifulsoup4" },
     { name = "sphinx" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/95/9c/6089f36354e4a5367d6c47bacbb7bbd57d58394c5c0d9d8a837866562a77/sphinx_null_theme-1.0.0.tar.gz", hash = "sha256:1df1715a21b90bad0cc9d577b69990e4283229f0a79a680414651f075559bdde", size = 15388, upload-time = "2026-02-02T07:07:24.211Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/a7/65/9ecc1a8759153d99243849c43bf7980bda82962e6c51893ebd89db0aa018/sphinx_null_theme-1.0.0-py3-none-any.whl", hash = "sha256:5c9a6e0fbace9697c10aed01d6fbff77240e64ee0e62544232efc5d85e09009c", size = 18971, upload-time = "2026-02-02T07:07:22.791Z" },
 ]
 
 [[package]]
@@ -594,9 +602,9 @@ dependencies = [
     { name = "linkify-it-py" },
     { name = "myst-parser" },
     { name = "sphinx" },
+    { name = "sphinx-clarity-theme" },
     { name = "sphinx-copybutton" },
     { name = "sphinx-design" },
-    { name = "sphinx-documattcom-theme" },
     { name = "sphinx-reredirects" },
     { name = "sphinx-sitemap" },
     { name = "sphinxcontrib-mermaid" },
@@ -615,9 +623,9 @@ requires-dist = [
     { name = "linkify-it-py", specifier = "==2.0.3" },
     { name = "myst-parser", specifier = "==4.0.0" },
     { name = "sphinx", specifier = "==8.1.3" },
+    { name = "sphinx-clarity-theme", specifier = ">=1.1.0" },
     { name = "sphinx-copybutton", specifier = "==0.5.2" },
     { name = "sphinx-design", specifier = "==0.6.1" },
-    { name = "sphinx-documattcom-theme", git = "https://github.com/documatt/sphinx-themes-next.git?subdirectory=documattcom" },
     { name = "sphinx-reredirects", specifier = "==0.1.5" },
     { name = "sphinx-sitemap", specifier = "==2.6.0" },
     { name = "sphinxcontrib-mermaid", specifier = "==1.0.0" },

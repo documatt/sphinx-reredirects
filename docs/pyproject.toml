@@ -12,12 +12,9 @@ dependencies = [
     "sphinx-sitemap==2.6.0",
     "sphinx-copybutton==0.5.2",
     "sphinxext-opengraph>=0.10.0",
-    "sphinx-documattcom-theme",
+    "sphinx-clarity-theme>=1.1.0",
 ]
 requires-python = ">=3.11"
 
 [dependency-groups]
 dev = ["nox>=2025.2.9", "sphinx-autobuild==2024.10.3", "sphinx-intl==2.2.0"]
-
-[tool.uv.sources]
-sphinx-documattcom-theme = { git = "https://github.com/documatt/sphinx-themes-next.git", subdirectory = "documattcom" }

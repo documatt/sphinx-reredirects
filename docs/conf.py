@@ -70,10 +70,18 @@ html_logo = html_favicon = "_static/logo.svg"
 html_static_path = ["_static"]
 html_extra_path = ["robots.txt"]
 
-html_theme = "sphinx_documattcom_theme"
+html_theme = "sphinx_clarity_theme"
 html_theme_options = {
-    "hero_title": project,
-    "hero_subtitle": 'The extension for <a href="https://www.sphinx-doc.org/">Sphinx documentation</a> projects that handles redirects for moved pages. It generates HTML pages with client-side redirects to the new page location to prevent 404 errors if you rename or move your documents.',
+    "header_menu": [
+        {
+            "label": "Documatt.com",
+            "url": "https://documatt.com",
+        },
+        {
+            "label": "Sphinx Themes",
+            "url": "https://readcraft.io",
+        },
+    ]
 }
 
 templates_path = ["_templates"]
